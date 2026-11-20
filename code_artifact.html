@@ -1,0 +1,2258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>미래에게 보내는 편지공방</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: 따뜻한 한글 명조, 고운돋움, 손글씨(개구) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FBF6EC',
+            parchment: '#F5ECD8',
+            parchmentDark: '#EADBC0',
+            sunlight: '#F2D28B',
+            amberGlow: '#E6B86A',
+            cedar: '#6E4E37',
+            walnut: '#4A3424',
+            woodLight: '#8B674B',
+            sage: '#8FA382',
+            sageDark: '#6B8260',
+            wildPink: '#E5989B',
+            wildBlue: '#9BB1D4',
+            wildYellow: '#EDD07A',
+            waxRed: '#A63A3A',
+            waxRedDark: '#7D2626'
+          },
+          fontFamily: {
+            serifKr: ['"Nanum Myeongjo"', 'serif'],
+            sansKr: ['"Gowun Dodum"', 'sans-serif'],
+            handKr: ['"Gaegu"', 'cursive']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* 기본 배경 및 따뜻한 세피아 잉크 텍스트 컬러 */
+    :root {
+      --bg-cream: #FBF6EC;
+      --bg-parchment: #F5ECD8;
+      --wood-dark: #4A3424;
+      --wood-mid: #6E4E37;
+      --wood-light: #8B674B;
+      --sun-gold: #F2D28B;
+      --sage-green: #8FA382;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-cream);
+      color: var(--wood-dark);
+      font-family: 'Gowun Dodum', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 미세한 수채화/한지 종이 질감 오버레이 */
+    .paper-texture {
+      background-image:
+        radial-gradient(rgba(110, 78, 55, 0.045) 1px, transparent 0),
+        radial-gradient(rgba(230, 184, 106, 0.06) 1px, transparent 0);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+    }
+
+    /* 손으로 그린 듯한 따뜻한 이중 테두리 카드 */
+    .hand-card {
+      background: rgba(251, 246, 236, 0.93);
+      border: 2px solid #8B674B;
+      box-shadow:
+        0 10px 30px rgba(74, 52, 36, 0.12),
+        inset 0 0 0 4px rgba(245, 236, 216, 0.85),
+        inset 0 0 0 5px rgba(139, 103, 75, 0.25);
+      border-radius: 26px;
+    }
+
+    /* 따뜻한 나무 버튼 스타일 */
+    .btn-wood {
+      background: linear-gradient(180deg, #7D593F 0%, #5E412C 100%);
+      color: #FBF6EC;
+      border: 2px solid #4A3424;
+      box-shadow: 0 4px 0 #4A3424, 0 8px 18px rgba(74, 52, 36, 0.22);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+    }
+    .btn-wood:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, #8A6448 0%, #684932 100%);
+      box-shadow: 0 6px 0 #4A3424, 0 12px 22px rgba(74, 52, 36, 0.26);
+    }
+    .btn-wood:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #4A3424, 0 4px 10px rgba(74, 52, 36, 0.2);
+    }
+
+    /* 보조 크림 버튼 스타일 */
+    .btn-cream {
+      background: #F5ECD8;
+      color: #4A3424;
+      border: 1.5px solid #8B674B;
+      box-shadow: 0 3px 0 #C7B08E;
+      transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    }
+    .btn-cream:hover {
+      background: #EFE2C6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 0 #B89E7A;
+    }
+    .btn-cream:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #B89E7A;
+    }
+
+    /* 화면 전환 페이드 & 부드러운 슬라이드 */
+    .screen-section {
+      animation: screenFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes screenFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 공방 배경 일러스트 애니메이션: 괘종시계 추, 햇살 먼지, 모락모락 차 김 */
+    @keyframes pendulumSwing {
+      0%, 100% { transform: rotate(-7deg); }
+      50% { transform: rotate(7deg); }
+    }
+    .clock-pendulum {
+      transform-origin: 830px 330px;
+      animation: pendulumSwing 3.6s ease-in-out infinite;
+    }
+
+    @keyframes floatMote {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.35;
+      }
+      50% {
+        transform: translate(10px, -16px) scale(1.25);
+        opacity: 0.95;
+      }
+    }
+    .sun-mote {
+      animation: floatMote 4.5s ease-in-out infinite;
+    }
+    .sun-mote-delay-1 { animation-delay: 1.1s; animation-duration: 5.2s; }
+    .sun-mote-delay-2 { animation-delay: 2.3s; animation-duration: 4.1s; }
+    .sun-mote-delay-3 { animation-delay: 3.2s; animation-duration: 5.8s; }
+
+    @keyframes teaSteam {
+      0% { transform: translateY(0) scaleX(1); opacity: 0; }
+      40% { opacity: 0.55; }
+      100% { transform: translateY(-22px) scaleX(1.15); opacity: 0; }
+    }
+    .steam-line {
+      animation: teaSteam 3.8s ease-in-out infinite;
+    }
+    .steam-line-2 {
+      animation-delay: 1.7s;
+    }
+
+    /* 편지지 4종 테마 스타일 */
+    .paper-style-cream {
+      background-color: #FCF8EF;
+      background-image: linear-gradient(to bottom, transparent 35px, rgba(139, 103, 75, 0.22) 36px);
+      background-size: 100% 36px;
+      border: 2px solid #C8B18E;
+      box-shadow: 0 12px 32px rgba(74, 52, 36, 0.12);
+    }
+
+    .paper-style-flower {
+      background-color: #FDF9F2;
+      background-image:
+        radial-gradient(circle at 20px 20px, rgba(229, 152, 155, 0.14) 0, transparent 90px),
+        radial-gradient(circle at calc(100% - 20px) calc(100% - 20px), rgba(155, 177, 212, 0.16) 0, transparent 100px),
+        linear-gradient(to bottom, transparent 35px, rgba(143, 163, 130, 0.24) 36px);
+      background-size: 100% 100%, 100% 100%, 100% 36px;
+      border: 2px solid #B7C4A9;
+      box-shadow: 0 12px 32px rgba(74, 52, 36, 0.12);
+    }
+
+    .paper-style-vintage {
+      background-color: #EFE1C4;
+      background-image:
+        radial-gradient(ellipse at center, rgba(251, 246, 236, 0.45) 0%, rgba(182, 148, 103, 0.28) 100%),
+        linear-gradient(to bottom, transparent 35px, rgba(110, 78, 55, 0.24) 36px);
+      background-size: 100% 100%, 100% 36px;
+      border: 2px solid #8B674B;
+      box-shadow: inset 0 0 36px rgba(110, 78, 55, 0.22), 0 12px 32px rgba(74, 52, 36, 0.16);
+    }
+
+    .paper-style-simple {
+      background-color: #FAF6EE;
+      background-image: radial-gradient(rgba(74, 52, 36, 0.035) 1px, transparent 0);
+      background-size: 16px 16px;
+      border: 2px solid #D3C3A8;
+      box-shadow: 0 12px 32px rgba(74, 52, 36, 0.1);
+    }
+
+    /* 편지 본문 텍스트에어리어 줄간격 맞춤 */
+    .letter-textarea {
+      line-height: 36px;
+      background: transparent;
+      resize: none;
+    }
+    .letter-textarea:focus {
+      outline: none;
+    }
+
+    /* 타임캡슐 봉인 시퀀스 애니메이션 */
+    @keyframes envelopeFoldAndDrop {
+      0% {
+        transform: translateY(-20px) scale(1);
+        opacity: 1;
+      }
+      30% {
+        transform: translateY(-28px) scale(0.92);
+        opacity: 1;
+      }
+      65% {
+        transform: translateY(38px) scale(0.64);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(72px) scale(0.45);
+        opacity: 0;
+      }
+    }
+    .animate-envelope-drop {
+      animation: envelopeFoldAndDrop 1.8s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+    }
+
+    @keyframes waxStampPress {
+      0% { transform: scale(1.8); opacity: 0; }
+      55% { transform: scale(0.95); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-wax-stamp {
+      animation: waxStampPress 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes capsuleAuraBloom {
+      0% { transform: scale(0.7); opacity: 0; }
+      50% { transform: scale(1.08); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 0.75; }
+    }
+    .animate-capsule-glow {
+      animation: capsuleAuraBloom 1.5s ease-out forwards;
+    }
+
+    @keyframes twinkleStar {
+      0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.2; }
+      50% { transform: scale(1.25) rotate(20deg); opacity: 1; }
+    }
+    .sparkle-particle {
+      animation: twinkleStar 2.2s ease-in-out infinite;
+    }
+
+    /* 커스텀 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5ECD8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B99D7B;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8B674B;
+    }
+  </style>
+</head>
+<body class="paper-texture min-h-screen flex flex-col selection:bg-sunlight selection:text-walnut">
+
+  <!-- ==================== 1. 상단 네비게이션 바 ==================== -->
+  <header class="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-woodLight/30 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+      <!-- 공방 엠블럼 & 타이틀 (클릭 시 첫 번째 화면으로 이동) -->
+      <button id="nav-home-btn" type="button" class="flex items-center gap-2.5 text-left group focus:outline-none">
+        <div class="w-10 h-10 rounded-full bg-parchment border-2 border-cedar flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+          <!-- 손그림 스타일 편지 봉투 + 왁스 실링 엠블럼 SVG -->
+          <svg class="w-6 h-6" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="28" height="20" rx="3.5" fill="#FBF6EC" stroke="#4A3424" stroke-width="2"/>
+            <path d="M5 10L18 20L31 10" stroke="#4A3424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="18" cy="19" r="4.2" fill="#A63A3A" stroke="#4A3424" stroke-width="1.3"/>
+            <circle cx="18" cy="19" r="2" fill="#F2D28B" opacity="0.75"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serifKr font-extrabold text-base sm:text-lg text-walnut tracking-tight block leading-tight">
+            미래에게 보내는 편지공방
+          </span>
+          <span class="hidden sm:block text-[11px] text-woodLight">
+            시간을 건너는 따뜻한 아날로그 작업실
+          </span>
+        </div>
+      </button>
+
+      <!-- 우측 액션: 내 타임캡슐 & 선택적 로그인 버튼 -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button id="nav-archive-btn" type="button" class="btn-cream px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-cedar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 8v13H3V8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 3h22v5H1z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 12h4" stroke-linecap="round"/>
+          </svg>
+          <span>내 타임캡슐</span>
+          <span id="nav-letter-count" class="ml-0.5 px-2 py-0.5 text-xs rounded-full bg-cedar text-cream font-bold">0</span>
+        </button>
+
+        <button id="nav-auth-btn" type="button" class="px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium border border-woodLight/50 bg-cream hover:bg-parchment text-walnut transition flex items-center gap-1.5">
+          <span id="auth-status-dot" class="w-2 h-2 rounded-full bg-sage"></span>
+          <span id="auth-btn-label">로그인</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 메인 콘텐츠 영역 ==================== -->
+  <main class="flex-1 flex flex-col">
+
+    <!-- ================================================================
+         SCREEN 1: 편지공방 입장 (Workshop Entrance)
+         첨부 일러스트(image_d85791.jpg)의 구도·색감·소품을 구현한 배경 위 히어로 카드
+    ================================================================= -->
+    <section id="screen-1" class="screen-section relative flex-1 flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-10 overflow-hidden">
+      <!-- 다층 손그림 스타일 SVG 일러스트 배경 (첨부 이미지 기반 구성) -->
+      <div class="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+        <svg class="w-full h-full object-cover" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- 햇살 그라데이션 -->
+            <linearGradient id="sunBeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFF5D6" stop-opacity="0.82"/>
+              <stop offset="55%" stop-color="#F2D28B" stop-opacity="0.34"/>
+              <stop offset="100%" stop-color="#F2D28B" stop-opacity="0"/>
+            </linearGradient>
+            <!-- 공방 벽면 따뜻한 크림/베이지 -->
+            <linearGradient id="wallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F7EBD2"/>
+              <stop offset="50%" stop-color="#EFE0C2"/>
+              <stop offset="100%" stop-color="#DFC8A2"/>
+            </linearGradient>
+            <!-- 나무 책상 그라데이션 -->
+            <linearGradient id="deskWoodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#8B674B"/>
+              <stop offset="45%" stop-color="#6E4E37"/>
+              <stop offset="100%" stop-color="#4E3625"/>
+            </linearGradient>
+            <!-- 창밖 부드러운 초록빛 정원 -->
+            <linearGradient id="windowOutdoor" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFF7DC"/>
+              <stop offset="65%" stop-color="#E7DFB8"/>
+              <stop offset="100%" stop-color="#C4CEAA"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 벽면 배경 -->
+          <rect width="1440" height="900" fill="url(#wallGrad)"/>
+
+          <!-- 은은한 벽지 세로 패널 선 -->
+          <g stroke="#B89B74" stroke-width="1" opacity="0.28">
+            <line x1="120" y1="0" x2="120" y2="680"/>
+            <line x1="560" y1="0" x2="560" y2="680"/>
+            <line x1="740" y1="0" x2="740" y2="680"/>
+            <line x1="1140" y1="0" x2="1140" y2="680"/>
+          </g>
+
+          <!-- ========== 좌측: 햇살이 쏟아지는 격자 창문 ========== -->
+          <g transform="translate(55, 45)">
+            <!-- 창문 외곽 나무 틀 -->
+            <rect x="0" y="0" width="430" height="440" rx="8" fill="#9A7656" stroke="#4A3424" stroke-width="3"/>
+            <rect x="16" y="16" width="398" height="408" rx="4" fill="url(#windowOutdoor)" stroke="#4A3424" stroke-width="2.5"/>
+            <!-- 창밖 몽글몽글 나뭇잎 실루엣 -->
+            <circle cx="95" cy="140" r="85" fill="#B9C89E" opacity="0.65"/>
+            <circle cx="215" cy="100" r="95" fill="#CDD6AE" opacity="0.6"/>
+            <circle cx="335" cy="165" r="80" fill="#B5C49B" opacity="0.65"/>
+            <circle cx="150" cy="285" r="105" fill="#A8BA8E" opacity="0.55"/>
+            <circle cx="300" cy="300" r="95" fill="#B9C89E" opacity="0.55"/>
+            <!-- 창문 격자 살 -->
+            <rect x="208" y="16" width="14" height="408" fill="#8B674B" stroke="#4A3424" stroke-width="2"/>
+            <rect x="16" y="212" width="398" height="14" fill="#8B674B" stroke="#4A3424" stroke-width="2"/>
+          </g>
+
+          <!-- 창가 아래 나무 선반 (Windowsill) -->
+          <g transform="translate(30, 482)">
+            <rect x="0" y="0" width="540" height="22" rx="5" fill="#7C593E" stroke="#4A3424" stroke-width="2.5"/>
+            <rect x="18" y="22" width="504" height="150" fill="#5D402B" stroke="#4A3424" stroke-width="2.5"/>
+            <!-- 선반 아래 수납 책들 -->
+            <rect x="45" y="42" width="22" height="118" rx="2" fill="#A98B68" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="70" y="36" width="26" height="124" rx="2" fill="#8FA382" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="99" y="46" width="20" height="114" rx="2" fill="#D5B88C" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="122" y="40" width="24" height="120" rx="2" fill="#9BB1D4" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="149" y="48" width="22" height="112" rx="2" fill="#C98A7B" stroke="#4A3424" stroke-width="1.8"/>
+          </g>
+
+          <!-- 창가 선반 위 소품들 (화분, 펜 꽂이 머그컵, 쌓인 책, 꽃 화분) -->
+          <g transform="translate(65, 345)">
+            <!-- 왼쪽 테라코타 화분 -->
+            <path d="M18 82 L68 82 L60 137 L26 137 Z" fill="#C78263" stroke="#4A3424" stroke-width="2.2"/>
+            <rect x="14" y="74" width="58" height="10" rx="3" fill="#D49172" stroke="#4A3424" stroke-width="2"/>
+            <path d="M43 74 C40 48, 22 36, 15 24 M43 74 C45 45, 62 32, 72 20 M43 60 C43 38, 43 22, 43 8" stroke="#5A724E" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="16" cy="24" rx="13" ry="7" transform="rotate(-25 16 24)" fill="#8FA382" stroke="#4A3424" stroke-width="1.8"/>
+            <ellipse cx="70" cy="22" rx="13" ry="7" transform="rotate(25 70 22)" fill="#8FA382" stroke="#4A3424" stroke-width="1.8"/>
+            <ellipse cx="43" cy="10" rx="11" ry="7" fill="#A5B898" stroke="#4A3424" stroke-width="1.8"/>
+            <circle cx="24" cy="40" r="6" fill="#E5989B" stroke="#4A3424" stroke-width="1.5"/>
+
+            <!-- 연필과 붓이 꽂힌 크림색 머그컵 -->
+            <g transform="translate(92, 66)">
+              <line x1="16" y1="24" x2="8" y2="-12" stroke="#6E4E37" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="26" y1="24" x2="25" y2="-18" stroke="#C78263" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="36" y1="24" x2="45" y2="-10" stroke="#8FA382" stroke-width="3.5" stroke-linecap="round"/>
+              <rect x="8" y="22" width="42" height="49" rx="6" fill="#F5ECD8" stroke="#4A3424" stroke-width="2.2"/>
+              <path d="M50 32 C62 32, 62 56, 50 56" fill="none" stroke="#4A3424" stroke-width="2.5"/>
+            </g>
+
+            <!-- 가로로 쌓인 빈티지 책 더미 -->
+            <g transform="translate(175, 76)">
+              <rect x="0" y="44" width="118" height="17" rx="4" fill="#8FA382" stroke="#4A3424" stroke-width="2"/>
+              <rect x="6" y="27" width="108" height="17" rx="4" fill="#E3C38B" stroke="#4A3424" stroke-width="2"/>
+              <rect x="2" y="10" width="114" height="17" rx="4" fill="#D59A8C" stroke="#4A3424" stroke-width="2"/>
+              <!-- 책 위 작은 초록 화분 -->
+              <path d="M38 -24 L76 -24 L70 10 L44 10 Z" fill="#C78263" stroke="#4A3424" stroke-width="2"/>
+              <ellipse cx="44" cy="-32" rx="14" ry="8" transform="rotate(-20 44 -32)" fill="#8FA382" stroke="#4A3424" stroke-width="1.8"/>
+              <ellipse cx="68" cy="-32" rx="14" ry="8" transform="rotate(20 68 -32)" fill="#A3B696" stroke="#4A3424" stroke-width="1.8"/>
+            </g>
+
+            <!-- 세워진 책들과 분홍 꽃 화분 -->
+            <g transform="translate(310, 12)">
+              <rect x="0" y="22" width="18" height="103" rx="2" fill="#9BB1D4" stroke="#4A3424" stroke-width="2"/>
+              <rect x="20" y="14" width="22" height="111" rx="2" fill="#F2D28B" stroke="#4A3424" stroke-width="2"/>
+              <rect x="44" y="24" width="18" height="101" rx="2" fill="#D59A8C" stroke="#4A3424" stroke-width="2"/>
+              <rect x="64" y="18" width="20" height="107" rx="2" fill="#8FA382" stroke="#4A3424" stroke-width="2"/>
+              <rect x="86" y="26" width="22" height="99" rx="2" fill="#B69978" stroke="#4A3424" stroke-width="2"/>
+            </g>
+          </g>
+
+          <!-- ========== 중앙 벽면 액자와 메모 ========== -->
+          <g transform="translate(615, 70)">
+            <rect x="0" y="0" width="96" height="122" rx="4" fill="#8B674B" stroke="#4A3424" stroke-width="2.5"/>
+            <rect x="10" y="10" width="76" height="102" fill="#FBF6EC" stroke="#4A3424" stroke-width="1.5"/>
+            <!-- 액자 속 보태니컬 일러스트 -->
+            <path d="M48 94 C48 68, 46 46, 48 28" stroke="#6B8260" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="48" cy="28" r="9" fill="#E5989B" opacity="0.85"/>
+            <circle cx="35" cy="48" r="7" fill="#9BB1D4" opacity="0.85"/>
+            <circle cx="61" cy="54" r="7" fill="#EDD07A" opacity="0.85"/>
+            <!-- 벽에 붙은 작은 편지 메모 -->
+            <rect x="12" y="146" width="66" height="82" rx="2" fill="#FBF6EC" stroke="#4A3424" stroke-width="1.8" transform="rotate(-2 45 185)"/>
+            <circle cx="45" cy="152" r="4.5" fill="#A63A3A"/>
+            <line x1="22" y1="170" x2="66" y2="169" stroke="#8B674B" stroke-width="1.5"/>
+            <line x1="22" y1="184" x2="62" y2="183" stroke="#8B674B" stroke-width="1.5"/>
+            <line x1="22" y1="198" x2="54" y2="197" stroke="#8B674B" stroke-width="1.5"/>
+          </g>
+
+          <!-- ========== 우측: 빈티지 괘종시계 & 원목 책장 ========== -->
+          <!-- 괘종시계 (Grandfather Clock) -->
+          <g transform="translate(755, 65)">
+            <!-- 시계 상단 아치형 크라운 -->
+            <path d="M22 65 C22 15, 128 15, 128 65 L136 65 L136 165 L14 165 L14 65 Z" fill="#7D593E" stroke="#4A3424" stroke-width="2.8"/>
+            <!-- 시계 원형 문자판 -->
+            <circle cx="75" cy="95" r="46" fill="#FBF6EC" stroke="#4A3424" stroke-width="2.5"/>
+            <circle cx="75" cy="95" r="39" fill="none" stroke="#8B674B" stroke-width="1.2" stroke-dasharray="3 4"/>
+            <!-- 시계 바늘 (오후 4시 10분경) -->
+            <line x1="75" y1="95" x2="96" y2="104" stroke="#4A3424" stroke-width="3" stroke-linecap="round"/>
+            <line x1="75" y1="95" x2="92" y2="68" stroke="#4A3424" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="75" cy="95" r="3.5" fill="#A63A3A"/>
+
+            <!-- 시계 몸통 및 유리창 -->
+            <rect x="24" y="165" width="102" height="310" fill="#6E4E37" stroke="#4A3424" stroke-width="2.8"/>
+            <rect x="40" y="185" width="70" height="225" rx="4" fill="#4A3424" stroke="#3A271B" stroke-width="2"/>
+            <!-- 흔들리는 황동 시계추 (애니메이션 적용) -->
+            <g class="clock-pendulum">
+              <line x1="830" y1="265" x2="830" y2="415" stroke="#E6B86A" stroke-width="3.5"/>
+              <circle cx="830" cy="422" r="18" fill="#F2D28B" stroke="#4A3424" stroke-width="2"/>
+              <circle cx="830" cy="422" r="11" fill="#E6B86A"/>
+            </g>
+            <!-- 시계 하단 받침 -->
+            <rect x="12" y="475" width="126" height="65" rx="4" fill="#5E412C" stroke="#4A3424" stroke-width="2.8"/>
+          </g>
+
+          <!-- 우측 끝 원목 책장 & 덩굴 화분 -->
+          <g transform="translate(1150, 75)">
+            <rect x="0" y="40" width="265" height="540" rx="6" fill="#6E4E37" stroke="#4A3424" stroke-width="3"/>
+            <rect x="16" y="60" width="233" height="145" fill="#4E3625" stroke="#4A3424" stroke-width="2"/>
+            <rect x="16" y="222" width="233" height="145" fill="#4E3625" stroke="#4A3424" stroke-width="2"/>
+            <rect x="16" y="384" width="233" height="165" fill="#4E3625" stroke="#4A3424" stroke-width="2"/>
+
+            <!-- 책장 위 화분과 덩굴 잎 -->
+            <path d="M55 0 L105 0 L98 40 L62 40 Z" fill="#C78263" stroke="#4A3424" stroke-width="2.2"/>
+            <path d="M80 0 C50 -10, 20 15, 12 52 C8 75, 22 92, 16 112" fill="none" stroke="#6B8260" stroke-width="2.8" stroke-linecap="round"/>
+            <ellipse cx="32" cy="14" rx="11" ry="6" transform="rotate(-30 32 14)" fill="#8FA382" stroke="#4A3424" stroke-width="1.5"/>
+            <ellipse cx="14" cy="48" rx="11" ry="6" transform="rotate(-65 14 48)" fill="#8FA382" stroke="#4A3424" stroke-width="1.5"/>
+            <ellipse cx="16" cy="84" rx="10" ry="6" transform="rotate(-45 16 84)" fill="#A3B696" stroke="#4A3424" stroke-width="1.5"/>
+
+            <!-- 1단 책들 -->
+            <rect x="30" y="95" width="22" height="110" rx="2" fill="#D8C3A5" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="55" y="88" width="26" height="117" rx="2" fill="#8FA382" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="84" y="98" width="20" height="107" rx="2" fill="#E3C38B" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="108" y="90" width="24" height="115" rx="2" fill="#9BB1D4" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="136" y="100" width="22" height="105" rx="2" fill="#C98A7B" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="162" y="92" width="28" height="113" rx="2" fill="#F2E5CE" stroke="#4A3424" stroke-width="1.8"/>
+
+            <!-- 2단 책들 -->
+            <rect x="42" y="255" width="24" height="112" rx="2" fill="#C98A7B" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="70" y="248" width="28" height="119" rx="2" fill="#F2E5CE" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="102" y="260" width="22" height="107" rx="2" fill="#8FA382" stroke="#4A3424" stroke-width="1.8"/>
+            <rect x="128" y="252" width="26" height="115" rx="2" fill="#B69978" stroke="#4A3424" stroke-width="1.8"/>
+          </g>
+
+          <!-- ========== 창문에서 대각선으로 비추는 오후의 황금빛 햇살 & 반짝이는 먼지 입자 ========== -->
+          <polygon points="75,65 465,65 1120,880 180,880" fill="url(#sunBeamGrad)"/>
+          <g fill="#FFF8DC">
+            <circle cx="380" cy="260" r="4" class="sun-mote"/>
+            <circle cx="460" cy="340" r="3" class="sun-mote sun-mote-delay-1"/>
+            <circle cx="540" cy="290" r="5" class="sun-mote sun-mote-delay-2"/>
+            <circle cx="620" cy="410" r="3.5" class="sun-mote sun-mote-delay-3"/>
+            <circle cx="690" cy="360" r="4.5" class="sun-mote sun-mote-delay-1"/>
+            <circle cx="750" cy="450" r="3" class="sun-mote sun-mote-delay-2"/>
+            <circle cx="510" cy="490" r="4" class="sun-mote sun-mote-delay-3"/>
+            <circle cx="840" cy="510" r="3.5" class="sun-mote"/>
+          </g>
+
+          <!-- ========== 전경: 따뜻한 원목 편지 작업대 (Wooden Desk) ========== -->
+          <g transform="translate(0, 620)">
+            <!-- 책상 상판 -->
+            <polygon points="0,35 1440,35 1440,280 0,280" fill="url(#deskWoodGrad)" stroke="#4A3424" stroke-width="3"/>
+            <!-- 나무 결 디테일 -->
+            <path d="M40 85 Q380 72 720 88 T1400 80" fill="none" stroke="#4A3424" stroke-width="1.5" opacity="0.28"/>
+            <path d="M20 155 Q440 172 860 150 T1420 162" fill="none" stroke="#4A3424" stroke-width="1.5" opacity="0.25"/>
+            <path d="M60 225 Q520 210 980 232 T1380 220" fill="none" stroke="#4A3424" stroke-width="1.5" opacity="0.25"/>
+
+            <!-- 왼쪽: 파스텔 야생화가 꽂힌 도자기 화병 (첨부 이미지의 시그니처 소품) -->
+            <g transform="translate(115, -65)">
+              <!-- 줄기 -->
+              <path d="M72 95 C60 55, 38 35, 22 18" stroke="#6B8260" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M76 95 C72 52, 68 26, 66 2" stroke="#6B8260" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M82 95 C92 54, 112 32, 128 16" stroke="#6B8260" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M85 95 C105 68, 126 56, 144 48" stroke="#6B8260" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M68 95 C45 68, 24 58, 8 52" stroke="#6B8260" stroke-width="2.5" stroke-linecap="round"/>
+
+              <!-- 잎사귀 -->
+              <ellipse cx="36" cy="52" rx="13" ry="6" transform="rotate(-35 36 52)" fill="#8FA382" stroke="#4A3424" stroke-width="1.6"/>
+              <ellipse cx="114" cy="54" rx="13" ry="6" transform="rotate(35 114 54)" fill="#8FA382" stroke="#4A3424" stroke-width="1.6"/>
+
+              <!-- 파스텔 야생화 (코랄 핑크, 페리윙클 블루, 버터컵 옐로우) -->
+              <!-- 분홍 꽃 1 -->
+              <g transform="translate(22, 18)">
+                <circle cx="-7" cy="-5" r="7" fill="#E5989B" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="7" cy="-5" r="7" fill="#E5989B" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="-7" cy="6" r="7" fill="#F2B5B8" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="7" cy="6" r="7" fill="#F2B5B8" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="0" cy="0" r="4.5" fill="#EDD07A" stroke="#4A3424" stroke-width="1.3"/>
+              </g>
+              <!-- 분홍 꽃 2 -->
+              <g transform="translate(66, 2)">
+                <circle cx="0" cy="-8" r="7.5" fill="#F2B5B8" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="8" cy="2" r="7.5" fill="#E5989B" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="-8" cy="2" r="7.5" fill="#E5989B" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="0" cy="8" r="7.5" fill="#F2B5B8" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="0" cy="0" r="4.5" fill="#EDD07A" stroke="#4A3424" stroke-width="1.3"/>
+              </g>
+              <!-- 하늘빛 파스텔 꽃 -->
+              <g transform="translate(128, 16)">
+                <circle cx="-7" cy="-5" r="7.5" fill="#9BB1D4" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="7" cy="-5" r="7.5" fill="#B6C7E2" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="-7" cy="6" r="7.5" fill="#B6C7E2" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="7" cy="6" r="7.5" fill="#9BB1D4" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="0" cy="0" r="4.5" fill="#FBF6EC" stroke="#4A3424" stroke-width="1.3"/>
+              </g>
+              <!-- 노란 작은 들꽃 -->
+              <g transform="translate(144, 48)">
+                <circle cx="0" cy="0" r="8" fill="#EDD07A" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="0" cy="0" r="3" fill="#8B674B"/>
+              </g>
+              <g transform="translate(8, 52)">
+                <circle cx="0" cy="0" r="7.5" fill="#9BB1D4" stroke="#4A3424" stroke-width="1.5"/>
+                <circle cx="0" cy="0" r="3" fill="#EDD07A"/>
+              </g>
+
+              <!-- 둥근 도자기 화병 본체 -->
+              <ellipse cx="78" cy="128" rx="44" ry="38" fill="#B9C1B3" stroke="#4A3424" stroke-width="2.5"/>
+              <path d="M56 92 L100 92 L95 104 L61 104 Z" fill="#A5AF9E" stroke="#4A3424" stroke-width="2.2"/>
+              <path d="M52 122 C54 106, 72 100, 86 104" fill="none" stroke="#FBF6EC" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+            </g>
+
+            <!-- 따뜻한 홍차 찻잔 & 받침 (모락모락 김 애니메이션) -->
+            <g transform="translate(88, 118)">
+              <!-- 김 피어오르는 선 -->
+              <path d="M36 -10 C30 -24, 44 -34, 38 -48" fill="none" stroke="#FBF6EC" stroke-width="2.5" stroke-linecap="round" class="steam-line"/>
+              <path d="M54 -8 C60 -22, 46 -32, 52 -46" fill="none" stroke="#FBF6EC" stroke-width="2.5" stroke-linecap="round" class="steam-line steam-line-2"/>
+              <!-- 받침 접시 -->
+              <ellipse cx="48" cy="48" rx="52" ry="15" fill="#F5ECD8" stroke="#4A3424" stroke-width="2.2"/>
+              <!-- 찻잔 -->
+              <path d="M16 14 L80 14 C78 42, 64 48, 48 48 C32 48, 18 42, 16 14 Z" fill="#FBF6EC" stroke="#4A3424" stroke-width="2.2"/>
+              <ellipse cx="48" cy="14" rx="32" ry="8" fill="#B5754A" stroke="#4A3424" stroke-width="1.8"/>
+              <path d="M80 20 C94 20, 94 38, 78 38" fill="none" stroke="#4A3424" stroke-width="2.5"/>
+              <!-- 티백 라벨 -->
+              <path d="M68 14 C74 18, 76 28, 74 35" fill="none" stroke="#4A3424" stroke-width="1.3"/>
+              <rect x="68" y="33" width="11" height="13" rx="1.5" fill="#E5989B" stroke="#4A3424" stroke-width="1.3"/>
+            </g>
+
+            <!-- 책상 위 펼쳐진 편지지, 봉투, 잉크병, 만년필 -->
+            <g transform="translate(360, 48)">
+              <!-- 봉투 -->
+              <rect x="590" y="38" width="150" height="96" rx="5" transform="rotate(7 665 86)" fill="#F5ECD8" stroke="#4A3424" stroke-width="2.2"/>
+              <path d="M598 42 L666 92 L742 54" fill="none" stroke="#4A3424" stroke-width="2"/>
+              <circle cx="666" cy="92" r="9" fill="#A63A3A" stroke="#4A3424" stroke-width="1.6"/>
+
+              <!-- 잉크병 & 만년필 -->
+              <g transform="translate(775, 18)">
+                <rect x="8" y="22" width="38" height="42" rx="7" fill="#5D738A" stroke="#4A3424" stroke-width="2.2"/>
+                <rect x="16" y="10" width="22" height="12" rx="2" fill="#4A3424"/>
+                <ellipse cx="27" cy="36" rx="12" ry="6" fill="#8FA8C2" opacity="0.5"/>
+              </g>
+              <!-- 대각선으로 놓인 만년필 -->
+              <g transform="translate(510, 128) rotate(-18)">
+                <rect x="0" y="0" width="128" height="9" rx="4" fill="#3E2C20" stroke="#2B1D14" stroke-width="1.5"/>
+                <polygon points="128,1 148,4.5 128,8" fill="#E6B86A" stroke="#4A3424" stroke-width="1.2"/>
+                <rect x="24" y="-2" width="34" height="3" rx="1.5" fill="#E6B86A"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 중앙 반투명 양피지 히어로 카드 -->
+      <div class="relative z-10 max-w-2xl w-full hand-card px-6 py-10 sm:px-12 sm:py-14 text-center">
+        <!-- 상단 작은 왁스실링 장식 배지 -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-parchment border border-woodLight/50 text-cedar text-xs sm:text-sm font-bold mb-6 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-waxRed inline-block"></span>
+          <span>오후의 햇살이 머무는 아날로그 편지공방</span>
+        </div>
+
+        <!-- 메인 타이틀 문구 (요구사항 정확 반영) -->
+        <h1 class="font-serifKr font-extrabold text-2xl sm:text-4xl text-walnut leading-snug tracking-tight mb-5 break-keep">
+          미래의 나에게, 오늘의 마음을 전해보세요.
+        </h1>
+
+        <!-- 짧은 소개 문구 (요구사항 정확 반영) -->
+        <p class="font-sansKr text-base sm:text-lg text-cedar leading-relaxed mb-9 break-keep">
+          지금의 내가 미래의 나에게 보내는 작은 선물.<br />
+          시간이 흐른 뒤, 오늘의 마음을 다시 꺼내볼 수 있도록.
+        </p>
+
+        <!-- 행동 유도 버튼 -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <button id="start-write-btn" type="button" class="btn-wood w-full sm:w-auto px-8 py-4 rounded-2xl font-serifKr font-bold text-base sm:text-lg flex items-center justify-center gap-2.5">
+            <!-- 만년필 촉 아이콘 -->
+            <svg class="w-5 h-5 text-sunlight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 19l7-7 3 3-7 7-3-3z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 2l7.586 7.586" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="11" cy="11" r="2"/>
+            </svg>
+            <span>미래의 나에게 편지 쓰기</span>
+          </button>
+        </div>
+
+        <!-- 하단 잔잔한 안내 -->
+        <p class="mt-6 text-xs text-woodLight">
+          로그인 없이 바로 작성하고 보관할 수 있어요 · 작성된 편지는 타임캡슐 보관함에 저장됩니다
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SCREEN 2: 편지 작성 준비 (Workbench Setup)
+         도착 시점 선택 (1/3/5/10년 뒤 + 직접 선택) & 편지지 4종 선택
+    ================================================================= -->
+    <section id="screen-2" class="screen-section hidden flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <!-- 단계 표시 바 -->
+      <div class="flex items-center justify-center gap-2 sm:gap-4 mb-8 text-xs sm:text-sm">
+        <span class="px-3.5 py-1.5 rounded-full bg-cedar text-cream font-bold shadow-sm">1. 날짜와 편지지 고르기</span>
+        <span class="text-woodLight">→</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-parchment text-woodLight border border-woodLight/30">2. 편지 쓰기</span>
+        <span class="text-woodLight">→</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-parchment text-woodLight border border-woodLight/30">3. 타임캡슐 봉인</span>
+      </div>
+
+      <div class="hand-card p-6 sm:p-10">
+        <!-- STEP 1: 편지 도착 시점 선택 -->
+        <div class="mb-10">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-sunlight/50 text-walnut">STEP 01</span>
+            <span class="text-xs text-woodLight">시간의 이정표 설정</span>
+          </div>
+          <h2 class="font-serifKr font-extrabold text-xl sm:text-2xl text-walnut mb-5">
+            언제의 나에게 편지를 보내고 싶나요?
+          </h2>
+
+          <!-- 기간 선택 버튼 그룹 -->
+          <div id="date-preset-group" class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-3 mb-5">
+            <button type="button" data-preset="1" class="date-preset-btn py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-cedar text-cream border-walnut shadow-sm">
+              1년 뒤의 나
+            </button>
+            <button type="button" data-preset="3" class="date-preset-btn py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-parchment text-walnut border-woodLight/40 hover:border-cedar">
+              3년 뒤의 나
+            </button>
+            <button type="button" data-preset="5" class="date-preset-btn py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-parchment text-walnut border-woodLight/40 hover:border-cedar">
+              5년 뒤의 나
+            </button>
+            <button type="button" data-preset="10" class="date-preset-btn py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-parchment text-walnut border-woodLight/40 hover:border-cedar">
+              10년 뒤의 나
+            </button>
+            <button type="button" data-preset="custom" class="date-preset-btn col-span-2 sm:col-span-1 py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-parchment text-walnut border-woodLight/40 hover:border-cedar">
+              직접 날짜 선택
+            </button>
+          </div>
+
+          <!-- 직접 날짜 선택 입력창 (선택 시 노출) -->
+          <div id="custom-date-wrapper" class="hidden mb-5 p-4 rounded-2xl bg-parchment/80 border border-woodLight/40 flex flex-col sm:flex-row sm:items-center gap-3">
+            <label for="custom-open-date" class="text-sm font-bold text-walnut flex items-center gap-1.5">
+              <span>개봉하고 싶은 날짜를 골라주세요:</span>
+            </label>
+            <input id="custom-open-date" type="date" class="px-4 py-2.5 rounded-xl bg-cream border-2 border-woodLight/60 text-walnut font-bold text-sm focus:outline-none focus:border-cedar" />
+          </div>
+
+          <!-- 계산된 개봉 예정일 표시 배지 -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-parchment via-sunlight/35 to-parchment border border-amberGlow/70 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-waxRed text-cream flex items-center justify-center text-xs font-serifKr font-bold shadow-sm">封</span>
+              <span class="text-sm text-cedar">편지가 열릴 약속의 날</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span id="computed-target-date-text" class="font-serifKr font-extrabold text-lg sm:text-xl text-walnut">
+                2027년 11월 18일의 나에게
+              </span>
+              <span id="computed-dday-badge" class="px-2.5 py-1 rounded-full bg-walnut text-sunlight text-xs font-bold">
+                D-365
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-woodLight/25 my-8" />
+
+        <!-- STEP 2: 편지지 디자인 선택 -->
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-sunlight/50 text-walnut">STEP 02</span>
+            <span class="text-xs text-woodLight">종이의 질감과 분위기 선택</span>
+          </div>
+          <h2 class="font-serifKr font-extrabold text-xl sm:text-2xl text-walnut mb-5">
+            마음을 담을 편지지를 선택해 주세요
+          </h2>
+
+          <!-- 4종 편지지 일러스트 프리뷰 카드 그리드 -->
+          <div id="paper-choice-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- 1. 따뜻한 크림색 편지지 -->
+            <button type="button" data-paper="cream" class="paper-choice-card group text-left p-3.5 rounded-2xl border-2 border-cedar bg-cream shadow-md transition-all focus:outline-none">
+              <div class="relative h-40 rounded-xl paper-style-cream p-3 mb-3 overflow-hidden flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b border-woodLight/30 pb-1.5">
+                  <span class="text-[10px] font-serifKr text-woodLight">To. 미래의 나</span>
+                  <svg class="w-4 h-4 text-sageDark" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8Z"/>
+                  </svg>
+                </div>
+                <div class="space-y-2.5 my-auto opacity-65">
+                  <div class="h-1.5 w-4/5 bg-woodLight/30 rounded"></div>
+                  <div class="h-1.5 w-3/5 bg-woodLight/30 rounded"></div>
+                  <div class="h-1.5 w-2/3 bg-woodLight/30 rounded"></div>
+                </div>
+                <span class="selected-badge self-end px-2 py-0.5 rounded-full bg-cedar text-cream text-[10px] font-bold">선택됨 ✓</span>
+              </div>
+              <h3 class="font-serifKr font-bold text-base text-walnut">따뜻한 크림색 편지지</h3>
+              <p class="text-xs text-woodLight mt-0.5">부드러운 가로 줄이 그어진 포근한 기본 편지지</p>
+            </button>
+
+            <!-- 2. 꽃무늬 편지지 -->
+            <button type="button" data-paper="flower" class="paper-choice-card group text-left p-3.5 rounded-2xl border-2 border-woodLight/35 bg-cream/70 hover:border-cedar transition-all focus:outline-none">
+              <div class="relative h-40 rounded-xl paper-style-flower p-3 mb-3 overflow-hidden flex flex-col justify-between">
+                <!-- 좌상단 파스텔 야생화 일러스트 -->
+                <svg class="w-12 h-12 absolute -top-1 -left-1 opacity-90" viewBox="0 0 60 60">
+                  <circle cx="18" cy="18" r="7" fill="#E5989B"/>
+                  <circle cx="28" cy="14" r="6" fill="#F2B5B8"/>
+                  <circle cx="14" cy="28" r="6" fill="#9BB1D4"/>
+                  <circle cx="20" cy="20" r="3.5" fill="#EDD07A"/>
+                  <ellipse cx="34" cy="26" rx="7" ry="3.5" transform="rotate(25 34 26)" fill="#8FA382"/>
+                </svg>
+                <div class="flex justify-end items-center pb-1">
+                  <span class="text-[10px] font-serifKr text-sageDark">Wildflower Note</span>
+                </div>
+                <div class="space-y-2.5 my-auto opacity-65 pl-4">
+                  <div class="h-1.5 w-4/5 bg-sageDark/35 rounded"></div>
+                  <div class="h-1.5 w-3/5 bg-sageDark/35 rounded"></div>
+                </div>
+                <!-- 우하단 꽃 장식 -->
+                <svg class="w-11 h-11 absolute -bottom-1 -right-1 opacity-90" viewBox="0 0 60 60">
+                  <circle cx="40" cy="40" r="7" fill="#9BB1D4"/>
+                  <circle cx="30" cy="44" r="6" fill="#E5989B"/>
+                  <circle cx="44" cy="30" r="6" fill="#EDD07A"/>
+                  <circle cx="39" cy="39" r="3" fill="#FBF6EC"/>
+                </svg>
+                <span class="selected-badge hidden self-end px-2 py-0.5 rounded-full bg-cedar text-cream text-[10px] font-bold relative z-10">선택됨 ✓</span>
+              </div>
+              <h3 class="font-serifKr font-bold text-base text-walnut">꽃무늬 편지지</h3>
+              <p class="text-xs text-woodLight mt-0.5">파스텔 들꽃이 모서리에 피어난 화사한 편지지</p>
+            </button>
+
+            <!-- 3. 빈티지 편지지 -->
+            <button type="button" data-paper="vintage" class="paper-choice-card group text-left p-3.5 rounded-2xl border-2 border-woodLight/35 bg-cream/70 hover:border-cedar transition-all focus:outline-none">
+              <div class="relative h-40 rounded-xl paper-style-vintage p-3 mb-3 overflow-hidden flex flex-col justify-between">
+                <div class="border border-cedar/45 rounded-lg h-full p-2.5 flex flex-col justify-between">
+                  <div class="flex justify-between items-start">
+                    <span class="text-[9px] font-serifKr tracking-widest text-cedar uppercase">Archive Post</span>
+                    <!-- 빈티지 우표 & 소인 일러스트 -->
+                    <div class="w-7 h-8 border border-dashed border-waxRed/70 bg-cream/70 flex items-center justify-center rounded-xs">
+                      <span class="text-[9px] text-waxRed font-serifKr font-bold">郵</span>
+                    </div>
+                  </div>
+                  <div class="space-y-2 opacity-70">
+                    <div class="h-1.5 w-4/5 bg-cedar/35 rounded"></div>
+                    <div class="h-1.5 w-2/3 bg-cedar/35 rounded"></div>
+                  </div>
+                  <span class="selected-badge hidden self-end px-2 py-0.5 rounded-full bg-cedar text-cream text-[10px] font-bold">선택됨 ✓</span>
+                </div>
+              </div>
+              <h3 class="font-serifKr font-bold text-base text-walnut">빈티지 편지지</h3>
+              <p class="text-xs text-woodLight mt-0.5">세월의 깊이와 클래식 우표가 담긴 양피지 스타일</p>
+            </button>
+
+            <!-- 4. 심플한 무지 편지지 -->
+            <button type="button" data-paper="simple" class="paper-choice-card group text-left p-3.5 rounded-2xl border-2 border-woodLight/35 bg-cream/70 hover:border-cedar transition-all focus:outline-none">
+              <div class="relative h-40 rounded-xl paper-style-simple p-3 mb-3 overflow-hidden flex flex-col justify-between">
+                <div class="border border-woodLight/30 rounded-lg h-full p-2.5 flex flex-col justify-between">
+                  <span class="text-[10px] font-serifKr text-woodLight">Cotton Ivory</span>
+                  <p class="text-[11px] font-serifKr text-woodLight/75 text-center my-auto">여백 속에 담는<br/>솔직한 이야기</p>
+                  <span class="selected-badge hidden self-end px-2 py-0.5 rounded-full bg-cedar text-cream text-[10px] font-bold">선택됨 ✓</span>
+                </div>
+              </div>
+              <h3 class="font-serifKr font-bold text-base text-walnut">심플한 무지 편지지</h3>
+              <p class="text-xs text-woodLight mt-0.5">순수한 코튼 아이보리 질감의 단정한 무지 편지지</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- 하단 이동 버튼 -->
+        <div class="mt-10 flex flex-col-reverse sm:flex-row items-center justify-between gap-3">
+          <button id="back-to-1-btn" type="button" class="btn-cream w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm">
+            ← 공방 입구로
+          </button>
+          <button id="go-to-3-btn" type="button" class="btn-wood w-full sm:w-auto px-8 py-3.5 rounded-xl font-serifKr font-bold text-base">
+            편지 쓰기 시작하기 →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SCREEN 3: 미래의 나에게 편지 쓰기 (Letter Writing)
+         선택한 편지지 디자인 위에 직접 편지를 작성 + 글쓰기 도움 질문 5가지
+    ================================================================= -->
+    <section id="screen-3" class="screen-section hidden flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10">
+      <!-- 상단 작업대 컨트롤 바 (편지지 빠른 변경 & 글씨체 전환) -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-5 px-1">
+        <div class="flex items-center gap-2 text-xs sm:text-sm text-cedar">
+          <span class="font-bold">편지지 변경:</span>
+          <button type="button" data-quick-paper="cream" class="quick-paper-dot w-6 h-6 rounded-full bg-[#FCF8EF] border-2 border-cedar shadow-xs" title="따뜻한 크림색 편지지"></button>
+          <button type="button" data-quick-paper="flower" class="quick-paper-dot w-6 h-6 rounded-full bg-[#F2B5B8] border border-woodLight" title="꽃무늬 편지지"></button>
+          <button type="button" data-quick-paper="vintage" class="quick-paper-dot w-6 h-6 rounded-full bg-[#E3CFA8] border border-woodLight" title="빈티지 편지지"></button>
+          <button type="button" data-quick-paper="simple" class="quick-paper-dot w-6 h-6 rounded-full bg-[#FAF6EE] border border-woodLight" title="심플한 무지 편지지"></button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-woodLight">글씨 느낌:</span>
+          <button id="toggle-font-btn" type="button" class="px-3 py-1 rounded-full text-xs font-bold bg-parchment border border-woodLight/50 text-walnut hover:bg-parchmentDark transition">
+            단정한 명조체
+          </button>
+        </div>
+      </div>
+
+      <!-- 중앙 커다란 편지지 시트 -->
+      <div id="active-stationery-sheet" class="relative rounded-3xl p-6 sm:p-12 paper-style-cream transition-all duration-300">
+        <!-- 꽃무늬 편지지 전용 코너 플라워 일러스트 장식 -->
+        <div id="sheet-flower-decor" class="hidden pointer-events-none">
+          <svg class="w-20 h-20 sm:w-24 sm:h-24 absolute top-2 left-2 opacity-90" viewBox="0 0 90 90">
+            <path d="M20 65 C22 44, 34 30, 52 20" stroke="#6B8260" stroke-width="2" fill="none"/>
+            <circle cx="26" cy="26" r="10" fill="#E5989B" opacity="0.85"/>
+            <circle cx="42" cy="18" r="8" fill="#F2B5B8" opacity="0.9"/>
+            <circle cx="18" cy="42" r="8" fill="#9BB1D4" opacity="0.85"/>
+            <circle cx="28" cy="28" r="4.5" fill="#EDD07A"/>
+            <ellipse cx="48" cy="34" rx="10" ry="5" transform="rotate(28 48 34)" fill="#8FA382"/>
+          </svg>
+          <svg class="w-20 h-20 sm:w-24 sm:h-24 absolute bottom-2 right-2 opacity-90" viewBox="0 0 90 90">
+            <path d="M70 25 C68 46, 56 60, 38 70" stroke="#6B8260" stroke-width="2" fill="none"/>
+            <circle cx="62" cy="62" r="10" fill="#9BB1D4" opacity="0.85"/>
+            <circle cx="46" cy="70" r="8" fill="#E5989B" opacity="0.85"/>
+            <circle cx="70" cy="46" r="8" fill="#EDD07A" opacity="0.9"/>
+            <circle cx="60" cy="60" r="4.5" fill="#FBF6EC"/>
+            <ellipse cx="42" cy="54" rx="10" ry="5" transform="rotate(28 42 54)" fill="#8FA382"/>
+          </svg>
+        </div>
+
+        <!-- 빈티지 편지지 전용 우표 & 소인 장식 -->
+        <div id="sheet-vintage-decor" class="hidden pointer-events-none">
+          <div class="absolute top-5 right-6 sm:top-8 sm:right-10 flex items-center gap-2 opacity-85">
+            <div class="w-16 h-16 rounded-full border-2 border-cedar/50 flex flex-col items-center justify-center text-[9px] font-serifKr text-cedar -rotate-12">
+              <span>TIME CAPSULE</span>
+              <span class="font-bold">편지공방</span>
+              <span>ARCHIVE</span>
+            </div>
+            <div class="w-12 h-14 border-2 border-dashed border-waxRed/70 bg-cream/60 p-1 flex flex-col items-center justify-center rounded-xs">
+              <span class="text-waxRed font-serifKr font-extrabold text-sm">未來</span>
+              <span class="text-[8px] text-cedar">POSTAGE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 편지 상단 수신일 및 발신일 메타 -->
+        <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-6 border-b border-woodLight/30">
+          <div>
+            <span id="sheet-target-date" class="font-serifKr font-extrabold text-base sm:text-lg text-waxRedDark">
+              To. 2027년 11월 18일의 나에게
+            </span>
+          </div>
+          <span id="sheet-written-date" class="text-xs sm:text-sm text-woodLight">
+            2026년 11월 18일 기록
+          </span>
+        </div>
+
+        <!-- 편지 제목 입력 (선택) -->
+        <div class="relative z-10 mb-5">
+          <input
+            id="letter-title-input"
+            type="text"
+            maxlength="60"
+            placeholder="편지 제목을 적어주세요 (비워두면 '미래의 나에게 보내는 편지'로 담겨요)"
+            class="w-full bg-transparent border-b border-dashed border-woodLight/45 pb-2 font-serifKr font-bold text-lg sm:text-xl text-walnut placeholder:text-woodLight/60 focus:outline-none focus:border-cedar"
+          />
+        </div>
+
+        <!-- 고정 상단 인사말 (요구사항 정확 반영) -->
+        <p id="sheet-greeting" class="relative z-10 font-serifKr font-bold text-xl sm:text-2xl text-walnut mb-4">
+          안녕, 미래의 나.
+        </p>
+
+        <!-- 자유 편지 작성 영역 -->
+        <div class="relative z-10">
+          <textarea
+            id="letter-body-textarea"
+            rows="10"
+            placeholder="오늘의 공기, 지금 품고 있는 고민과 작은 행복, 그리고 미래의 나에게 건네고 싶은 따뜻한 응원을 천천히 적어보세요..."
+            class="letter-textarea w-full font-serifKr text-base sm:text-lg text-walnut placeholder:text-woodLight/55 min-h-[280px] sm:min-h-[340px]"
+          ></textarea>
+        </div>
+
+        <!-- 하단 서명 및 실시간 글자 수 표시 -->
+        <div class="relative z-10 mt-4 pt-3 border-t border-woodLight/25 flex items-center justify-between text-xs sm:text-sm text-woodLight">
+          <span class="font-serifKr italic">오늘의 내가, 미래의 나에게</span>
+          <span id="letter-char-count" class="font-bold text-cedar bg-parchment/80 px-3 py-1 rounded-full border border-woodLight/30">
+            0자
+          </span>
+        </div>
+      </div>
+
+      <!-- 글쓰기 시작을 돕는 질문 카드 영역 (요구사항 5개 질문 정확 반영) -->
+      <div class="mt-7 hand-card p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3.5">
+          <h3 class="font-serifKr font-bold text-base text-walnut flex items-center gap-2">
+            <span class="text-amberGlow">✦</span>
+            <span>글쓰기 시작을 돕는 질문</span>
+          </h3>
+          <span class="text-xs text-woodLight">질문을 누르면 편지지에 바로 추가할 수 있어요</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="prompt-chip text-left px-3.5 py-2 rounded-xl bg-parchment hover:bg-sunlight/45 border border-woodLight/40 text-xs sm:text-sm text-walnut transition">
+            지금 나는 어떤 하루를 보내고 있니?
+          </button>
+          <button type="button" class="prompt-chip text-left px-3.5 py-2 rounded-xl bg-parchment hover:bg-sunlight/45 border border-woodLight/40 text-xs sm:text-sm text-walnut transition">
+            요즘 가장 행복한 순간은 언제야?
+          </button>
+          <button type="button" class="prompt-chip text-left px-3.5 py-2 rounded-xl bg-parchment hover:bg-sunlight/45 border border-woodLight/40 text-xs sm:text-sm text-walnut transition">
+            미래의 나는 어떤 모습이길 바라니?
+          </button>
+          <button type="button" class="prompt-chip text-left px-3.5 py-2 rounded-xl bg-parchment hover:bg-sunlight/45 border border-woodLight/40 text-xs sm:text-sm text-walnut transition">
+            꼭 이루고 싶은 목표가 있니?
+          </button>
+          <button type="button" class="prompt-chip text-left px-3.5 py-2 rounded-xl bg-parchment hover:bg-sunlight/45 border border-woodLight/40 text-xs sm:text-sm text-walnut transition">
+            미래의 나에게 해주고 싶은 말은 무엇이니?
+          </button>
+        </div>
+      </div>
+
+      <!-- 하단 버튼 -->
+      <div class="mt-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-3">
+        <button id="back-to-2-btn" type="button" class="btn-cream w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm">
+          ← 날짜·편지지 다시 고르기
+        </button>
+        <button id="complete-letter-btn" type="button" class="btn-wood w-full sm:w-auto px-9 py-4 rounded-2xl font-serifKr font-bold text-base sm:text-lg shadow-lg">
+          편지 완성하기
+        </button>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SCREEN 4: 타임캡슐에 편지 보관하기 (Sealing in the Time Capsule)
+         아늑한 램프 불빛 아래 봉투 포장 -> 왁스 실링 -> 타임캡슐 보관 애니메이션
+    ================================================================= -->
+    <section id="screen-4" class="screen-section hidden flex-1 relative flex items-center justify-center px-4 py-10 overflow-hidden bg-gradient-to-b from-[#3A281C] via-[#4C3525] to-[#2E1F15] text-cream">
+      <!-- 은은한 랜턴 불빛 배경 글로우 -->
+      <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div id="capsule-ambient-glow" class="w-[340px] h-[340px] sm:w-[520px] sm:h-[520px] rounded-full bg-amberGlow/25 blur-3xl transition-all duration-1000"></div>
+      </div>
+
+      <div class="relative z-10 max-w-2xl w-full text-center">
+        <!-- 상단 감성 문구 -->
+        <p class="text-xs sm:text-sm tracking-widest uppercase text-sunlight/80 mb-2">TIME CAPSULE RITUAL</p>
+        <h2 id="sealing-headline" class="font-serifKr font-extrabold text-2xl sm:text-3xl text-cream mb-3 break-keep">
+          이제 오늘의 마음을 미래에 맡겨볼까요?
+        </h2>
+        <p id="sealing-subtext" class="text-sm sm:text-base text-parchment/85 mb-8">
+          정성껏 적은 편지를 봉투에 담아 타임캡슐 속에 안전하게 봉인합니다.
+        </p>
+
+        <!-- 중앙 인터랙티브 SVG 타임캡슐 & 봉투 일러스트 무대 -->
+        <div class="relative mx-auto w-full max-w-md h-80 sm:h-96 flex items-center justify-center">
+          <!-- 봉인 완료 시 피어나는 반짝임 별빛 파티클 -->
+          <div id="sealing-sparkles" class="hidden absolute inset-0 pointer-events-none">
+            <svg class="w-full h-full" viewBox="0 0 400 360">
+              <path d="M85 95 L89 107 L101 111 L89 115 L85 127 L81 115 L69 111 L81 107 Z" fill="#FFF3D1" class="sparkle-particle"/>
+              <path d="M315 85 L319 97 L331 101 L319 105 L315 117 L311 105 L299 101 L311 97 Z" fill="#F2D28B" class="sparkle-particle" style="animation-delay:0.5s"/>
+              <path d="M65 215 L68 224 L77 227 L68 230 L65 239 L62 230 L53 227 L62 224 Z" fill="#F2D28B" class="sparkle-particle" style="animation-delay:1s"/>
+              <path d="M335 205 L338 214 L347 217 L338 220 L335 229 L332 220 L323 217 L332 214 Z" fill="#FFF3D1" class="sparkle-particle" style="animation-delay:1.4s"/>
+              <circle cx="135" cy="65" r="3" fill="#FFF3D1" class="sparkle-particle" style="animation-delay:0.3s"/>
+              <circle cx="270" cy="60" r="3.5" fill="#F2D28B" class="sparkle-particle" style="animation-delay:0.8s"/>
+            </svg>
+          </div>
+
+          <!-- 봉투 (애니메이션으로 캡슐 안으로 들어감) -->
+          <div id="sealing-envelope-wrapper" class="absolute top-3 z-20 transition-all duration-700">
+            <svg class="w-40 h-28 sm:w-48 sm:h-32 drop-shadow-xl" viewBox="0 0 200 130">
+              <rect x="10" y="12" width="180" height="106" rx="10" fill="#FBF6EC" stroke="#4A3424" stroke-width="3"/>
+              <!-- 편지 텍스트 힌트 줄 -->
+              <line x1="34" y1="42" x2="110" y2="42" stroke="#8B674B" stroke-width="2" opacity="0.45"/>
+              <line x1="34" y1="56" x2="90" y2="56" stroke="#8B674B" stroke-width="2" opacity="0.45"/>
+              <!-- 봉투 덮개 -->
+              <path d="M12 16 L100 76 L188 16" fill="#F5ECD8" stroke="#4A3424" stroke-width="3" stroke-linejoin="round"/>
+              <!-- 붉은 금빛 왁스 실링 인장 -->
+              <g id="envelope-wax-seal" class="opacity-95">
+                <circle cx="100" cy="74" r="17" fill="#A63A3A" stroke="#4A3424" stroke-width="2.2"/>
+                <circle cx="100" cy="74" r="11" fill="none" stroke="#F2D28B" stroke-width="1.5"/>
+                <text x="100" y="78" text-anchor="middle" fill="#FBF6EC" font-size="10" font-family="Nanum Myeongjo, serif" font-weight="bold">約</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 원목 & 유리 타임캡슐 상자 일러스트 -->
+          <svg class="w-72 h-72 sm:w-80 sm:h-80 mt-20 relative z-10 drop-shadow-2xl" viewBox="0 0 320 300">
+            <defs>
+              <linearGradient id="capsuleWood" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#6E4E37"/>
+                <stop offset="50%" stop-color="#8B674B"/>
+                <stop offset="100%" stop-color="#5A3E2B"/>
+              </linearGradient>
+              <linearGradient id="capsuleGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF9EB" stop-opacity="0.42"/>
+                <stop offset="100%" stop-color="#F2D28B" stop-opacity="0.16"/>
+              </linearGradient>
+              <linearGradient id="brassGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F7DF9E"/>
+                <stop offset="100%" stop-color="#C8963E"/>
+              </linearGradient>
+            </defs>
+
+            <!-- 타임캡슐 뚜껑 (열렸다가 닫히는 그룹) -->
+            <g id="capsule-lid-group" style="transform-origin: 65px 125px; transition: transform 0.8s cubic-bezier(0.34, 1.3, 0.64, 1); transform: rotate(-22deg);">
+              <path d="M55 125 C55 68, 265 68, 265 125 Z" fill="url(#capsuleWood)" stroke="#3A271B" stroke-width="3.5"/>
+              <path d="M72 125 C72 82, 248 82, 248 125 Z" fill="url(#capsuleGlass)" stroke="#3A271B" stroke-width="2"/>
+              <!-- 뚜껑 상단 황동 손잡이 -->
+              <rect x="135" y="64" width="50" height="12" rx="6" fill="url(#brassGold)" stroke="#3A271B" stroke-width="2.2"/>
+            </g>
+
+            <!-- 타임캡슐 본체 (나무 프레임 + 유리창) -->
+            <rect x="52" y="125" width="216" height="135" rx="18" fill="url(#capsuleWood)" stroke="#3A271B" stroke-width="3.5"/>
+            <!-- 유리 투명 창 -->
+            <rect x="74" y="142" width="172" height="94" rx="12" fill="url(#capsuleGlass)" stroke="#3A271B" stroke-width="2.2"/>
+            <!-- 유리창 안쪽에 안착된 편지 실루엣 (봉인 후 표시) -->
+            <g id="capsule-inner-letter" class="opacity-0 transition-opacity duration-700">
+              <rect x="108" y="164" width="104" height="58" rx="6" fill="#FBF6EC" stroke="#4A3424" stroke-width="2"/>
+              <path d="M110 166 L160 198 L210 166" fill="none" stroke="#4A3424" stroke-width="1.8"/>
+              <circle cx="160" cy="196" r="8" fill="#A63A3A"/>
+            </g>
+
+            <!-- 크림색 리본 & 봉인 스티커 -->
+            <rect x="148" y="125" width="24" height="135" fill="#F5ECD8" opacity="0.88"/>
+            <path d="M160 135 C138 118, 124 134, 146 144 C126 154, 140 168, 160 150 C180 168, 194 154, 174 144 C196 134, 182 118, 160 135 Z" fill="#E5989B" stroke="#3A271B" stroke-width="2"/>
+
+            <!-- 중앙 황동 자물쇠 -->
+            <g id="capsule-padlock" transform="translate(142, 168)">
+              <!-- 자물쇠 고리 (잠길 때 내려옴) -->
+              <path id="padlock-shackle" d="M8 16 V8 A10 10 0 0 1 28 8 V16" fill="none" stroke="#F2D28B" stroke-width="4" stroke-linecap="round" style="transform: translateY(-6px); transition: transform 0.45s ease;"/>
+              <rect x="2" y="15" width="32" height="26" rx="6" fill="url(#brassGold)" stroke="#3A271B" stroke-width="2.2"/>
+              <circle cx="18" cy="26" r="3" fill="#3A271B"/>
+              <line x1="18" y1="28" x2="18" y2="34" stroke="#3A271B" stroke-width="2.2" stroke-linecap="round"/>
+            </g>
+
+            <!-- 하단 받침 발 -->
+            <rect x="72" y="260" width="36" height="12" rx="4" fill="#4A3424" stroke="#3A271B" stroke-width="2"/>
+            <rect x="212" y="260" width="36" height="12" rx="4" fill="#4A3424" stroke="#3A271B" stroke-width="2"/>
+          </svg>
+        </div>
+
+        <!-- 봉인 실행 버튼 / 완료 후 메시지 영역 -->
+        <div id="sealing-action-area" class="mt-4">
+          <button id="trigger-seal-btn" type="button" class="px-8 py-4 rounded-2xl bg-gradient-to-b from-sunlight to-amberGlow text-walnut font-serifKr font-extrabold text-base sm:text-lg border-2 border-cream/80 shadow-xl hover:scale-[1.02] active:scale-[0.99] transition-all">
+            봉투에 담아 타임캡슐에 보관하기
+          </button>
+        </div>
+
+        <!-- 봉인 완료 메시지 (애니메이션 종료 후 페이드인) -->
+        <div id="sealing-complete-area" class="hidden mt-4 space-y-4 animate-[screenFadeIn_0.8s_ease_forwards]">
+          <div class="p-5 rounded-2xl bg-cream/12 border border-sunlight/40 backdrop-blur-sm">
+            <p class="font-serifKr font-bold text-xl sm:text-2xl text-sunlight mb-1.5">
+              편지가 무사히 보관되었어요.
+            </p>
+            <p class="text-sm sm:text-base text-parchment">
+              미래의 당신이 이 편지를 열어볼 날을 기다리고 있을게요.
+            </p>
+          </div>
+
+          <button id="go-to-5-btn" type="button" class="px-8 py-3.5 rounded-2xl bg-cream text-walnut font-serifKr font-extrabold text-base shadow-lg hover:bg-parchment transition">
+            보관 정보 확인하기 →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SCREEN 5: 편지 보관 완료 (Storage Completion)
+         완성된 편지 보관증 & 미리보기
+    ================================================================= -->
+    <section id="screen-5" class="screen-section hidden flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-10 sm:py-12">
+      <div class="hand-card p-6 sm:p-10">
+        <!-- 상단 보관증 헤더 -->
+        <div class="text-center pb-6 mb-6 border-b-2 border-dashed border-woodLight/40">
+          <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-waxRed text-cream flex items-center justify-center shadow-md border-2 border-walnut">
+            <span class="font-serifKr font-extrabold text-xl">封</span>
+          </div>
+          <span class="text-xs font-bold tracking-widest uppercase text-woodLight">TIME CAPSULE CERTIFICATE</span>
+          <h2 class="font-serifKr font-extrabold text-2xl sm:text-3xl text-walnut mt-1">
+            타임캡슐 보관 완료증
+          </h2>
+        </div>
+
+        <!-- 필수 보관 정보 그리드 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-7">
+          <div class="p-4 rounded-2xl bg-parchment/80 border border-woodLight/30">
+            <span class="text-xs text-woodLight block mb-1">편지 제목</span>
+            <p id="cert-title" class="font-serifKr font-bold text-base sm:text-lg text-walnut break-keep">
+              미래의 나에게 보내는 편지
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-parchment/80 border border-woodLight/30">
+            <span class="text-xs text-woodLight block mb-1">편지 수신인</span>
+            <p class="font-serifKr font-bold text-base sm:text-lg text-walnut">
+              미래의 나
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-parchment/80 border border-woodLight/30">
+            <span class="text-xs text-woodLight block mb-1">작성 날짜</span>
+            <p id="cert-written-date" class="font-bold text-base text-cedar">
+              2026년 11월 18일
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-sunlight/30 border border-amberGlow">
+            <span class="text-xs text-cedar block mb-1">편지를 열어볼 날짜</span>
+            <div class="flex items-center gap-2">
+              <p id="cert-open-date" class="font-serifKr font-extrabold text-base sm:text-lg text-waxRedDark">
+                2027년 11월 18일
+              </p>
+              <span id="cert-dday" class="px-2 py-0.5 rounded-full bg-walnut text-sunlight text-xs font-bold">
+                D-365
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 편지 미리보기 (선택한 편지지 테마 반영) -->
+        <div class="mb-6">
+          <span class="text-xs font-bold text-woodLight block mb-2">보관된 편지 미리보기</span>
+          <div id="cert-preview-sheet" class="rounded-2xl p-5 sm:p-7 paper-style-cream max-h-64 overflow-y-auto">
+            <p class="font-serifKr font-bold text-base text-walnut mb-2">안녕, 미래의 나.</p>
+            <p id="cert-preview-body" class="font-serifKr text-sm sm:text-base text-walnut whitespace-pre-wrap leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- 자동 발송 미지원 안내 (과장 없는 정직한 보관 안내) -->
+        <div class="p-3.5 rounded-xl bg-parchment/70 border border-woodLight/30 text-xs text-cedar leading-relaxed mb-8 flex items-start gap-2.5">
+          <span class="text-base leading-none mt-0.5">🕯️</span>
+          <span>
+            이 편지는 편지공방의 <strong>내 타임캡슐 보관함</strong>에 안전하게 보관됩니다. 별도의 자동 이메일·문자 알림은 발송되지 않으니, 약속한 개봉 예정일에 공방을 다시 찾아 직접 편지를 열어보세요.
+          </span>
+        </div>
+
+        <!-- 하단 액션 버튼 (요구사항 2개 버튼 정확 반영) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <button id="cert-view-capsule-btn" type="button" class="btn-wood w-full sm:w-auto px-7 py-3.5 rounded-2xl font-serifKr font-bold text-base">
+            내 타임캡슐 확인하기
+          </button>
+          <button id="cert-go-home-btn" type="button" class="btn-cream w-full sm:w-auto px-7 py-3.5 rounded-2xl font-bold text-base">
+            처음으로 돌아가기
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ARCHIVE VIEW: 내 타임캡슐 보관함 (Saved Letters List)
+         저장된 편지 목록 확인, 열람, 수정, 삭제
+    ================================================================= -->
+    <section id="screen-archive" class="screen-section hidden flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-bold tracking-wider text-woodLight uppercase">MY TIME CAPSULE</span>
+          <h2 class="font-serifKr font-extrabold text-2xl sm:text-3xl text-walnut mt-1">
+            내 타임캡슐 보관함
+          </h2>
+          <p class="text-sm text-cedar mt-1">
+            시간을 건너 미래의 나에게 도착할 소중한 기록들이 보관되어 있어요.
+          </p>
+        </div>
+
+        <button id="archive-new-letter-btn" type="button" class="btn-wood px-5 py-3 rounded-2xl font-serifKr font-bold text-sm self-start sm:self-auto">
+          + 새 편지 쓰기
+        </button>
+      </div>
+
+      <!-- 편지 목록 그리드 -->
+      <div id="archive-list-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+
+      <!-- 빈 상태 안내 -->
+      <div id="archive-empty-state" class="hidden hand-card p-10 sm:p-14 text-center">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-parchment border-2 border-woodLight/40 flex items-center justify-center text-2xl">
+          ✉️
+        </div>
+        <h3 class="font-serifKr font-bold text-xl text-walnut mb-2">
+          아직 타임캡슐에 담긴 편지가 없어요
+        </h3>
+        <p class="text-sm text-cedar mb-6">
+          오늘의 마음과 다짐을 적어 미래의 나에게 첫 번째 편지를 보내볼까요?
+        </p>
+        <button id="empty-start-btn" type="button" class="btn-wood px-7 py-3.5 rounded-2xl font-serifKr font-bold text-base">
+          첫 편지 쓰러 가기
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 편지 열람 및 수정 모달 ==================== -->
+  <div id="letter-detail-modal" class="hidden fixed inset-0 z-50 bg-walnut/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-2xl my-auto rounded-3xl bg-cream border-2 border-cedar shadow-2xl overflow-hidden">
+      <!-- 모달 상단 바 -->
+      <div class="px-6 py-4 bg-parchment border-b border-woodLight/30 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span id="modal-dday-pill" class="px-2.5 py-0.5 rounded-full bg-walnut text-sunlight text-xs font-bold">D-365</span>
+          <span id="modal-dates-label" class="text-xs text-cedar font-medium">2026.11.18 → 2027.11.18</span>
+        </div>
+        <button id="close-detail-modal-btn" type="button" class="w-8 h-8 rounded-full bg-cream border border-woodLight/40 text-walnut hover:bg-parchmentDark flex items-center justify-center font-bold">
+          ✕
+        </button>
+      </div>
+
+      <!-- 열람 모드 콘텐츠 -->
+      <div id="modal-read-view" class="p-6 sm:p-8 max-h-[75vh] overflow-y-auto">
+        <div id="modal-paper-canvas" class="rounded-2xl p-6 sm:p-8 paper-style-cream">
+          <div class="flex justify-between items-center pb-3 mb-4 border-b border-woodLight/30 text-xs sm:text-sm">
+            <span id="modal-read-target" class="font-serifKr font-bold text-waxRedDark">To. 미래의 나에게</span>
+            <span id="modal-read-written" class="text-woodLight">작성일</span>
+          </div>
+          <h3 id="modal-read-title" class="font-serifKr font-extrabold text-xl text-walnut mb-4">제목</h3>
+          <p class="font-serifKr font-bold text-base text-walnut mb-3">안녕, 미래의 나.</p>
+          <div id="modal-read-body" class="font-serifKr text-base text-walnut whitespace-pre-wrap leading-relaxed min-h-[160px]"></div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <button id="modal-delete-btn" type="button" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-waxRed border border-waxRed/40 hover:bg-waxRed/10 transition">
+            편지 삭제하기
+          </button>
+          <div class="flex items-center gap-2.5">
+            <button id="modal-enable-edit-btn" type="button" class="btn-cream px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold">
+              수정하기
+            </button>
+            <button id="modal-close-bottom-btn" type="button" class="btn-wood px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold">
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 수정 모드 콘텐츠 -->
+      <div id="modal-edit-view" class="hidden p-6 sm:p-8 max-h-[78vh] overflow-y-auto space-y-4">
+        <h3 class="font-serifKr font-extrabold text-lg text-walnut">편지 내용 및 보관 정보 수정</h3>
+
+        <div>
+          <label class="block text-xs font-bold text-cedar mb-1">편지 제목</label>
+          <input id="edit-title-input" type="text" maxlength="60" class="w-full px-3.5 py-2.5 rounded-xl bg-parchment/70 border border-woodLight/50 font-serifKr font-bold text-walnut focus:outline-none focus:border-cedar" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-cedar mb-1">개봉 예정일</label>
+            <input id="edit-open-date-input" type="date" class="w-full px-3.5 py-2 rounded-xl bg-parchment/70 border border-woodLight/50 text-sm font-bold text-walnut focus:outline-none focus:border-cedar" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-cedar mb-1">편지지 디자인</label>
+            <select id="edit-paper-select" class="w-full px-3.5 py-2.5 rounded-xl bg-parchment/70 border border-woodLight/50 text-sm font-bold text-walnut focus:outline-none focus:border-cedar">
+              <option value="cream">따뜻한 크림색 편지지</option>
+              <option value="flower">꽃무늬 편지지</option>
+              <option value="vintage">빈티지 편지지</option>
+              <option value="simple">심플한 무지 편지지</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-cedar mb-1">편지 본문</label>
+          <textarea id="edit-body-textarea" rows="8" class="w-full p-4 rounded-2xl bg-parchment/60 border border-woodLight/50 font-serifKr text-base text-walnut leading-relaxed focus:outline-none focus:border-cedar"></textarea>
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2.5">
+          <button id="modal-cancel-edit-btn" type="button" class="btn-cream px-5 py-2.5 rounded-xl text-sm font-bold">
+            취소
+          </button>
+          <button id="modal-save-edit-btn" type="button" class="btn-wood px-6 py-2.5 rounded-xl text-sm font-bold">
+            수정 내용 저장하기
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 삭제 확인 커스텀 모달 (confirm() 미사용) ==================== -->
+  <div id="delete-confirm-modal" class="hidden fixed inset-0 z-50 bg-walnut/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-3xl bg-cream border-2 border-cedar p-6 text-center shadow-2xl">
+      <p class="text-2xl mb-2">🕯️</p>
+      <h4 class="font-serifKr font-extrabold text-lg text-walnut mb-2">이 편지를 타임캡슐에서 비울까요?</h4>
+      <p class="text-xs sm:text-sm text-cedar mb-6">삭제된 편지는 다시 복구할 수 없습니다.</p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="cancel-delete-btn" type="button" class="btn-cream flex-1 py-2.5 rounded-xl text-sm font-bold">유지하기</button>
+        <button id="confirm-delete-btn" type="button" class="flex-1 py-2.5 rounded-xl text-sm font-bold bg-waxRed text-cream hover:bg-waxRedDark transition">삭제하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 선택적 로그인 / 계정 관리 모달 ==================== -->
+  <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-walnut/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-3xl bg-cream border-2 border-cedar p-6 sm:p-8 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-serifKr font-extrabold text-xl text-walnut">공방 계정 연결</h3>
+        <button id="close-auth-modal-btn" type="button" class="w-8 h-8 rounded-full bg-parchment text-walnut font-bold">✕</button>
+      </div>
+
+      <!-- 현재 게스트 또는 로그인 상태 표시 -->
+      <div id="auth-current-info" class="p-3.5 rounded-2xl bg-parchment border border-woodLight/40 text-xs sm:text-sm text-cedar mb-5">
+        현재 게스트 상태로 이용 중입니다. 로그인하면 다른 기기에서도 내 타임캡슐을 안전하게 이어볼 수 있어요.
+      </div>
+
+      <!-- 로그인 폼 (게스트일 때 표시) -->
+      <div id="auth-login-forms" class="space-y-4">
+        <button id="google-signin-btn" type="button" class="w-full py-3 px-4 rounded-xl bg-white border-2 border-woodLight/50 hover:border-cedar text-walnut font-bold text-sm flex items-center justify-center gap-2 shadow-xs transition">
+          <span class="text-base font-extrabold text-waxRed">G</span>
+          <span>Google 계정으로 계속하기</span>
+        </button>
+
+        <div class="relative flex py-1 items-center">
+          <div class="flex-grow border-t border-woodLight/30"></div>
+          <span class="flex-shrink mx-3 text-xs text-woodLight">또는 이메일로 로그인</span>
+          <div class="flex-grow border-t border-woodLight/30"></div>
+        </div>
+
+        <form id="email-auth-form" class="space-y-3">
+          <input id="auth-email-input" type="email" required placeholder="이메일 주소" class="w-full px-3.5 py-2.5 rounded-xl bg-parchment/70 border border-woodLight/50 text-sm text-walnut focus:outline-none focus:border-cedar" />
+          <input id="auth-password-input" type="password" required minlength="6" placeholder="비밀번호 (6자 이상)" class="w-full px-3.5 py-2.5 rounded-xl bg-parchment/70 border border-woodLight/50 text-sm text-walnut focus:outline-none focus:border-cedar" />
+          <div class="grid grid-cols-2 gap-2.5 pt-1">
+            <button type="submit" data-auth-mode="signin" class="btn-wood py-2.5 rounded-xl text-sm font-bold">로그인</button>
+            <button type="submit" data-auth-mode="signup" class="btn-cream py-2.5 rounded-xl text-sm font-bold">회원가입</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 로그아웃 영역 (정식 로그인 상태일 때 표시) -->
+      <div id="auth-signed-in-actions" class="hidden">
+        <button id="signout-btn" type="button" class="w-full btn-cream py-3 rounded-xl text-sm font-bold text-waxRed">
+          로그아웃 (게스트 모드로 전환)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 따뜻한 토스트 알림 메시지 ==================== -->
+  <div id="toast-banner" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-3">
+    <div id="toast-text" class="px-5 py-3 rounded-full bg-walnut text-cream border border-sunlight/50 shadow-xl text-xs sm:text-sm font-medium flex items-center gap-2">
+      <span>✉️</span>
+      <span id="toast-message">알림 메시지</span>
+    </div>
+  </div>
+
+  <!-- ==================== 애플리케이션 로직 (Firebase + 상태 및 애니메이션 제어) ==================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import {
+      getAuth,
+      signInAnonymously,
+      signInWithCustomToken,
+      onAuthStateChanged,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      doc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // -------------------- 1. 전역 상태 정의 --------------------
+    const state = {
+      currentScreen: 'screen-1',
+      presetYears: 1, // '1', '3', '5', '10', or 'custom'
+      openDateISO: '', // YYYY-MM-DD
+      paperStyle: 'cream', // 'cream' | 'flower' | 'vintage' | 'simple'
+      fontMode: 'serif', // 'serif' | 'hand'
+      draftTitle: '',
+      draftBody: '',
+      letters: [], // Firestore 또는 세션 메모리에서 동기화되는 편지 배열
+      lastCompletedLetter: null,
+      activeModalLetterId: null,
+      isSealingAnimating: false
+    };
+
+    // 편지지 메타데이터
+    const PAPER_META = {
+      cream: { name: '따뜻한 크림색 편지지', className: 'paper-style-cream', badgeBg: 'bg-[#F5ECD8] text-walnut' },
+      flower: { name: '꽃무늬 편지지', className: 'paper-style-flower', badgeBg: 'bg-[#F2B5B8]/40 text-walnut' },
+      vintage: { name: '빈티지 편지지', className: 'paper-style-vintage', badgeBg: 'bg-[#E3CFA8] text-walnut' },
+      simple: { name: '심플한 무지 편지지', className: 'paper-style-simple', badgeBg: 'bg-[#FAF6EE] text-walnut' }
+    };
+
+    // -------------------- 2. 날짜 계산 유틸리티 --------------------
+    function getTodayLocal() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    }
+
+    function toISODateString(dateObj) {
+      const y = dateObj.getFullYear();
+      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const d = String(dateObj.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function parseISODate(isoStr) {
+      if (!isoStr) return getTodayLocal();
+      const [y, m, d] = isoStr.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function formatKoreanDate(isoStr) {
+      const d = parseISODate(isoStr);
+      return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
+    }
+
+    function computeFutureDateISO(yearsToAdd) {
+      const today = getTodayLocal();
+      const target = new Date(today.getFullYear() + Number(yearsToAdd), today.getMonth(), today.getDate());
+      return toISODateString(target);
+    }
+
+    function computeDDayLabel(openDateISO) {
+      const today = getTodayLocal();
+      const target = parseISODate(openDateISO);
+      const diffTime = target.getTime() - today.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays > 0) return `D-${diffDays}`;
+      if (diffDays === 0) return 'D-Day · 오늘 개봉';
+      return `D+${Math.abs(diffDays)} · 개봉 가능`;
+    }
+
+    // -------------------- 3. 토스트 알림 유틸리티 --------------------
+    let toastTimer = null;
+    function showToast(message) {
+      const banner = document.getElementById('toast-banner');
+      const textEl = document.getElementById('toast-message');
+      textEl.textContent = message;
+      banner.classList.remove('opacity-0', 'translate-y-3');
+      banner.classList.add('opacity-100', 'translate-y-0');
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('opacity-0', 'translate-y-3');
+        banner.classList.remove('opacity-100', 'translate-y-0');
+      }, 2800);
+    }
+
+    // -------------------- 4. Firebase 인증 & Firestore 연동 --------------------
+    let db = null;
+    let auth = null;
+    let currentUser = null;
+    let unsubscribeLetters = null;
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'future-letter-workshop';
+
+    async function initFirebaseAndAuth() {
+      try {
+        if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+          updateAuthUI(null);
+          renderArchiveList();
+          return;
+        }
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        // 규칙 3: 쿼리 전 인증 우선 수행
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else if (!auth.currentUser) {
+          await signInAnonymously(auth);
+        }
+
+        onAuthStateChanged(auth, (user) => {
+          currentUser = user;
+          updateAuthUI(user);
+          if (user) {
+            subscribeUserLetters(user.uid);
+          } else {
+            if (unsubscribeLetters) unsubscribeLetters();
+            state.letters = [];
+            renderArchiveList();
+          }
+        });
+      } catch (err) {
+        console.warn('Firebase 초기화 안내 (세션 모드로 동작):', err);
+        updateAuthUI(null);
+        renderArchiveList();
+      }
+    }
+
+    function subscribeUserLetters(uid) {
+      if (!db || !uid) return;
+      if (unsubscribeLetters) unsubscribeLetters();
+
+      // 규칙 1 & 2: 엄격한 사용자 전용 경로 사용, 복합 쿼리 없이 전체 조회 후 메모리 정렬
+      const lettersCol = collection(db, 'artifacts', appId, 'users', uid, 'letters');
+      unsubscribeLetters = onSnapshot(
+        lettersCol,
+        (snapshot) => {
+          const fetched = [];
+          snapshot.forEach((docSnap) => {
+            fetched.push({ id: docSnap.id, ...docSnap.data() });
+          });
+          // 최신 작성순 메모리 정렬
+          fetched.sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
+          state.letters = fetched;
+          updateLetterCountBadge();
+          renderArchiveList();
+        },
+        (error) => {
+          console.error('편지 목록 동기화 오류:', error);
+        }
+      );
+    }
+
+    async function saveNewLetterToStore(letterObj) {
+      // Firestore 저장 시도 (인증 가드 준수)
+      if (db && currentUser) {
+        const lettersCol = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'letters');
+        const docRef = await addDoc(lettersCol, letterObj);
+        return { id: docRef.id, ...letterObj };
+      }
+      // 오프라인/로컬 폴백
+      const fallback = { id: 'local-' + Date.now(), ...letterObj };
+      state.letters.unshift(fallback);
+      updateLetterCountBadge();
+      renderArchiveList();
+      return fallback;
+    }
+
+    async function updateLetterInStore(letterId, updatedFields) {
+      if (db && currentUser && !letterId.startsWith('local-')) {
+        const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'letters', letterId);
+        await updateDoc(docRef, updatedFields);
+        return;
+      }
+      const idx = state.letters.findIndex((item) => item.id === letterId);
+      if (idx !== -1) {
+        state.letters[idx] = { ...state.letters[idx], ...updatedFields };
+        renderArchiveList();
+      }
+    }
+
+    async function deleteLetterFromStore(letterId) {
+      if (db && currentUser && !letterId.startsWith('local-')) {
+        const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'letters', letterId);
+        await deleteDoc(docRef);
+        return;
+      }
+      state.letters = state.letters.filter((item) => item.id !== letterId);
+      updateLetterCountBadge();
+      renderArchiveList();
+    }
+
+    function updateAuthUI(user) {
+      const btnLabel = document.getElementById('auth-btn-label');
+      const dot = document.getElementById('auth-status-dot');
+      const infoBox = document.getElementById('auth-current-info');
+      const loginForms = document.getElementById('auth-login-forms');
+      const signedOutArea = document.getElementById('auth-signed-in-actions');
+
+      if (user && !user.isAnonymous) {
+        const displayName = user.displayName || user.email || '공방 회원';
+        btnLabel.textContent = displayName.split('@')[0];
+        dot.className = 'w-2 h-2 rounded-full bg-amberGlow';
+        infoBox.innerHTML = `<strong>${displayName}</strong> 계정으로 연결되어 있습니다. 작성한 편지가 개인 타임캡슐에 안전하게 동기화됩니다.`;
+        loginForms.classList.add('hidden');
+        signedOutArea.classList.remove('hidden');
+      } else {
+        btnLabel.textContent = '로그인';
+        dot.className = 'w-2 h-2 rounded-full bg-sage';
+        infoBox.textContent = '현재 게스트 상태로 이용 중입니다. 로그인하면 다른 기기에서도 내 타임캡슐을 안전하게 이어볼 수 있어요.';
+        loginForms.classList.remove('hidden');
+        signedOutArea.classList.add('hidden');
+      }
+    }
+
+    function updateLetterCountBadge() {
+      document.getElementById('nav-letter-count').textContent = state.letters.length;
+    }
+
+    // -------------------- 5. 화면 전환 네비게이션 --------------------
+    function navigateToScreen(screenId) {
+      const screens = ['screen-1', 'screen-2', 'screen-3', 'screen-4', 'screen-5', 'screen-archive'];
+      screens.forEach((id) => {
+        const el = document.getElementById(id);
+        if (id === screenId) {
+          el.classList.remove('hidden');
+          // 애니메이션 재트리거
+          el.classList.remove('screen-section');
+          void el.offsetWidth;
+          el.classList.add('screen-section');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+      state.currentScreen = screenId;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -------------------- 6. Screen 2: 날짜 및 편지지 선택 로직 --------------------
+    function initWorkbenchSetup() {
+      // 초기 1년 뒤 날짜 설정
+      state.presetYears = 1;
+      state.openDateISO = computeFutureDateISO(1);
+
+      // 직접 날짜 선택 input min 값 = 내일
+      const tomorrow = new Date(getTodayLocal().getTime() + 86400000);
+      const customInput = document.getElementById('custom-open-date');
+      customInput.min = toISODateString(tomorrow);
+      customInput.value = state.openDateISO;
+
+      refreshTargetDateDisplay();
+      refreshPaperChoiceUI();
+    }
+
+    function refreshTargetDateDisplay() {
+      const formatted = formatKoreanDate(state.openDateISO);
+      const dday = computeDDayLabel(state.openDateISO);
+      document.getElementById('computed-target-date-text').textContent = `${formatted}의 나에게`;
+      document.getElementById('computed-dday-badge').textContent = dday;
+    }
+
+    function refreshPaperChoiceUI() {
+      document.querySelectorAll('.paper-choice-card').forEach((card) => {
+        const style = card.dataset.paper;
+        const badge = card.querySelector('.selected-badge');
+        if (style === state.paperStyle) {
+          card.classList.remove('border-woodLight/35', 'bg-cream/70');
+          card.classList.add('border-cedar', 'bg-cream', 'shadow-md');
+          if (badge) badge.classList.remove('hidden');
+        } else {
+          card.classList.add('border-woodLight/35', 'bg-cream/70');
+          card.classList.remove('border-cedar', 'bg-cream', 'shadow-md');
+          if (badge) badge.classList.add('hidden');
+        }
+      });
+    }
+
+    // -------------------- 7. Screen 3: 편지 작성 공간 렌더링 --------------------
+    function prepareWritingScreen() {
+      const todayISO = toISODateString(getTodayLocal());
+      document.getElementById('sheet-target-date').textContent = `To. ${formatKoreanDate(state.openDateISO)}의 나에게`;
+      document.getElementById('sheet-written-date').textContent = `${formatKoreanDate(todayISO)} 기록`;
+
+      applyStationeryThemeToSheet(state.paperStyle);
+      updateCharCount();
+    }
+
+    function applyStationeryThemeToSheet(paperKey) {
+      state.paperStyle = paperKey;
+      const sheet = document.getElementById('active-stationery-sheet');
+      sheet.classList.remove('paper-style-cream', 'paper-style-flower', 'paper-style-vintage', 'paper-style-simple');
+      sheet.classList.add(PAPER_META[paperKey].className);
+
+      // 테마별 전용 장식 토글
+      document.getElementById('sheet-flower-decor').classList.toggle('hidden', paperKey !== 'flower');
+      document.getElementById('sheet-vintage-decor').classList.toggle('hidden', paperKey !== 'vintage');
+
+      // 상단 빠른 편지지 스와치 강조
+      document.querySelectorAll('.quick-paper-dot').forEach((dot) => {
+        if (dot.dataset.quickPaper === paperKey) {
+          dot.classList.add('ring-2', 'ring-cedar', 'ring-offset-2', 'scale-110');
+        } else {
+          dot.classList.remove('ring-2', 'ring-cedar', 'ring-offset-2', 'scale-110');
+        }
+      });
+
+      refreshPaperChoiceUI();
+    }
+
+    function updateCharCount() {
+      const body = document.getElementById('letter-body-textarea').value;
+      document.getElementById('letter-char-count').textContent = `${body.length}자`;
+    }
+
+    // -------------------- 8. Screen 4: 타임캡슐 보관 애니메이션 --------------------
+    function resetSealingStage() {
+      state.isSealingAnimating = false;
+      const envWrapper = document.getElementById('sealing-envelope-wrapper');
+      const lidGroup = document.getElementById('capsule-lid-group');
+      const innerLetter = document.getElementById('capsule-inner-letter');
+      const shackle = document.getElementById('padlock-shackle');
+      const sparkles = document.getElementById('sealing-sparkles');
+      const glow = document.getElementById('capsule-ambient-glow');
+
+      envWrapper.classList.remove('animate-envelope-drop');
+      envWrapper.style.opacity = '1';
+      envWrapper.style.transform = 'translateY(0) scale(1)';
+
+      lidGroup.style.transform = 'rotate(-22deg)';
+      innerLetter.classList.add('opacity-0');
+      shackle.style.transform = 'translateY(-6px)';
+      sparkles.classList.add('hidden');
+      glow.classList.remove('animate-capsule-glow', 'bg-sunlight/50');
+      glow.classList.add('bg-amberGlow/25');
+
+      document.getElementById('sealing-headline').textContent = '이제 오늘의 마음을 미래에 맡겨볼까요?';
+      document.getElementById('sealing-subtext').textContent = '정성껏 적은 편지를 봉투에 담아 타임캡슐 속에 안전하게 봉인합니다.';
+      document.getElementById('sealing-action-area').classList.remove('hidden');
+      document.getElementById('sealing-complete-area').classList.add('hidden');
+    }
+
+    async function executeTimeCapsuleSealing() {
+      if (state.isSealingAnimating) return;
+      state.isSealingAnimating = true;
+
+      const triggerBtn = document.getElementById('trigger-seal-btn');
+      triggerBtn.disabled = true;
+      triggerBtn.textContent = '마음을 봉인하는 중...';
+
+      const envWrapper = document.getElementById('sealing-envelope-wrapper');
+      const waxSeal = document.getElementById('envelope-wax-seal');
+      const lidGroup = document.getElementById('capsule-lid-group');
+      const innerLetter = document.getElementById('capsule-inner-letter');
+      const shackle = document.getElementById('padlock-shackle');
+      const sparkles = document.getElementById('sealing-sparkles');
+      const glow = document.getElementById('capsule-ambient-glow');
+
+      // 1단계: 왁스 실링 도장 찍기 + 봉투가 타임캡슐 내부로 하강
+      waxSeal.classList.add('animate-wax-stamp');
+      envWrapper.classList.add('animate-envelope-drop');
+
+      // 실제 데이터 저장 준비
+      const todayISO = toISODateString(getTodayLocal());
+      const finalTitle = state.draftTitle.trim() || '미래의 나에게 보내는 편지';
+      const newLetterData = {
+        title: finalTitle,
+        body: state.draftBody.trim(),
+        writtenDate: todayISO,
+        openDate: state.openDateISO,
+        paperStyle: state.paperStyle,
+        recipient: '미래의 나',
+        createdAtMs: Date.now()
+      };
+
+      // 2단계 (1.4초 후): 타임캡슐 뚜껑 닫힘 + 안쪽에 편지 안착 + 자물쇠 잠금
+      setTimeout(() => {
+        innerLetter.classList.remove('opacity-0');
+        lidGroup.style.transform = 'rotate(0deg)';
+      }, 1350);
+
+      setTimeout(() => {
+        shackle.style.transform = 'translateY(0px)';
+      }, 1900);
+
+      // 3단계 (2.3초 후): 따뜻한 빛과 반짝임 효과 + 완료 문구 표시
+      setTimeout(async () => {
+        sparkles.classList.remove('hidden');
+        glow.classList.remove('bg-amberGlow/25');
+        glow.classList.add('bg-sunlight/50', 'animate-capsule-glow');
+
+        try {
+          const saved = await saveNewLetterToStore(newLetterData);
+          state.lastCompletedLetter = saved;
+        } catch (err) {
+          console.error('저장 오류:', err);
+          state.lastCompletedLetter = { id: 'local-' + Date.now(), ...newLetterData };
+        }
+
+        document.getElementById('sealing-headline').textContent = '타임캡슐 봉인이 완료되었어요';
+        document.getElementById('sealing-subtext').textContent = `${formatKoreanDate(state.openDateISO)}까지 소중히 간직할게요.`;
+        document.getElementById('sealing-action-area').classList.add('hidden');
+        document.getElementById('sealing-complete-area').classList.remove('hidden');
+
+        triggerBtn.disabled = false;
+        triggerBtn.textContent = '봉투에 담아 타임캡슐에 보관하기';
+        state.isSealingAnimating = false;
+      }, 2350);
+    }
+
+    // -------------------- 9. Screen 5: 보관 완료증 렌더링 --------------------
+    function renderCompletionScreen() {
+      const letter = state.lastCompletedLetter;
+      if (!letter) return;
+
+      document.getElementById('cert-title').textContent = letter.title;
+      document.getElementById('cert-written-date').textContent = formatKoreanDate(letter.writtenDate);
+      document.getElementById('cert-open-date').textContent = formatKoreanDate(letter.openDate);
+      document.getElementById('cert-dday').textContent = computeDDayLabel(letter.openDate);
+      document.getElementById('cert-preview-body').textContent = letter.body;
+
+      const previewSheet = document.getElementById('cert-preview-sheet');
+      previewSheet.classList.remove('paper-style-cream', 'paper-style-flower', 'paper-style-vintage', 'paper-style-simple');
+      previewSheet.classList.add(PAPER_META[letter.paperStyle || 'cream'].className);
+    }
+
+    // -------------------- 10. 내 타임캡슐 보관함 렌더링 --------------------
+    function renderArchiveList() {
+      const grid = document.getElementById('archive-list-grid');
+      const emptyState = document.getElementById('archive-empty-state');
+      updateLetterCountBadge();
+
+      if (!state.letters || state.letters.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = state.letters
+        .map((letter) => {
+          const meta = PAPER_META[letter.paperStyle] || PAPER_META.cream;
+          const dday = computeDDayLabel(letter.openDate);
+          return `
+            <article data-letter-id="${letter.id}" class="archive-card cursor-pointer group rounded-3xl p-5 sm:p-6 bg-cream/95 border-2 border-woodLight/40 hover:border-cedar shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${meta.badgeBg} border border-woodLight/30">
+                    ${meta.name}
+                  </span>
+                  <span class="px-2.5 py-1 rounded-full bg-walnut text-sunlight text-xs font-bold">
+                    ${dday}
+                  </span>
+                </div>
+
+                <h3 class="font-serifKr font-extrabold text-lg text-walnut group-hover:text-cedar transition line-clamp-1 mb-2">
+                  ${escapeHTML(letter.title)}
+                </h3>
+
+                <p class="font-serifKr text-sm text-cedar/90 line-clamp-3 leading-relaxed mb-4">
+                  ${escapeHTML(letter.body)}
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-woodLight/25 flex items-center justify-between text-xs text-woodLight">
+                <span>작성: ${formatKoreanDate(letter.writtenDate)}</span>
+                <span class="font-bold text-waxRedDark">개봉: ${formatKoreanDate(letter.openDate)}</span>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      // 카드 클릭 이벤트 연결
+      grid.querySelectorAll('.archive-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          openLetterDetailModal(card.dataset.letterId);
+        });
+      });
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // -------------------- 11. 편지 열람 & 수정 모달 제어 --------------------
+    function openLetterDetailModal(letterId) {
+      const letter = state.letters.find((l) => l.id === letterId);
+      if (!letter) return;
+
+      state.activeModalLetterId = letterId;
+
+      // 열람 뷰 채우기
+      document.getElementById('modal-dday-pill').textContent = computeDDayLabel(letter.openDate);
+      document.getElementById('modal-dates-label').textContent = `${formatKoreanDate(letter.writtenDate)} 작성 → ${formatKoreanDate(letter.openDate)} 개봉`;
+      document.getElementById('modal-read-target').textContent = `To. ${formatKoreanDate(letter.openDate)}의 나에게`;
+      document.getElementById('modal-read-written').textContent = `${formatKoreanDate(letter.writtenDate)} 기록`;
+      document.getElementById('modal-read-title').textContent = letter.title;
+      document.getElementById('modal-read-body').textContent = letter.body;
+
+      const paperCanvas = document.getElementById('modal-paper-canvas');
+      paperCanvas.classList.remove('paper-style-cream', 'paper-style-flower', 'paper-style-vintage', 'paper-style-simple');
+      paperCanvas.classList.add((PAPER_META[letter.paperStyle] || PAPER_META.cream).className);
+
+      // 수정 뷰 기본값 세팅
+      document.getElementById('edit-title-input').value = letter.title;
+      document.getElementById('edit-open-date-input').value = letter.openDate;
+      document.getElementById('edit-paper-select').value = letter.paperStyle || 'cream';
+      document.getElementById('edit-body-textarea').value = letter.body;
+
+      document.getElementById('modal-read-view').classList.remove('hidden');
+      document.getElementById('modal-edit-view').classList.add('hidden');
+      document.getElementById('letter-detail-modal').classList.remove('hidden');
+    }
+
+    function closeLetterDetailModal() {
+      document.getElementById('letter-detail-modal').classList.add('hidden');
+      state.activeModalLetterId = null;
+    }
+
+    // -------------------- 12. 이벤트 리스너 바인딩 --------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      initWorkbenchSetup();
+      initFirebaseAndAuth();
+
+      // 상단 네비게이션
+      document.getElementById('nav-home-btn').addEventListener('click', () => {
+        navigateToScreen('screen-1');
+      });
+
+      document.getElementById('nav-archive-btn').addEventListener('click', () => {
+        renderArchiveList();
+        navigateToScreen('screen-archive');
+      });
+
+      // Screen 1 -> Screen 2
+      document.getElementById('start-write-btn').addEventListener('click', () => {
+        // 새 편지 초기화
+        state.draftTitle = '';
+        state.draftBody = '';
+        document.getElementById('letter-title-input').value = '';
+        document.getElementById('letter-body-textarea').value = '';
+        initWorkbenchSetup();
+        navigateToScreen('screen-2');
+      });
+
+      // Screen 2: 도착 시점 프리셋 버튼
+      document.querySelectorAll('.date-preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const preset = btn.dataset.preset;
+          state.presetYears = preset;
+
+          document.querySelectorAll('.date-preset-btn').forEach((b) => {
+            if (b.dataset.preset === preset) {
+              b.className = 'date-preset-btn py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-cedar text-cream border-walnut shadow-sm' + (preset === 'custom' ? ' col-span-2 sm:col-span-1' : '');
+            } else {
+              b.className = 'date-preset-btn py-3.5 px-3 rounded-2xl border-2 font-bold text-sm sm:text-base transition-all bg-parchment text-walnut border-woodLight/40 hover:border-cedar' + (b.dataset.preset === 'custom' ? ' col-span-2 sm:col-span-1' : '');
+            }
+          });
+
+          const customWrapper = document.getElementById('custom-date-wrapper');
+          if (preset === 'custom') {
+            customWrapper.classList.remove('hidden');
+            const customVal = document.getElementById('custom-open-date').value;
+            if (customVal) state.openDateISO = customVal;
+          } else {
+            customWrapper.classList.add('hidden');
+            state.openDateISO = computeFutureDateISO(Number(preset));
+          }
+          refreshTargetDateDisplay();
+        });
+      });
+
+      // 직접 날짜 선택 input 변경
+      document.getElementById('custom-open-date').addEventListener('change', (e) => {
+        if (e.target.value) {
+          state.openDateISO = e.target.value;
+          refreshTargetDateDisplay();
+        }
+      });
+
+      // Screen 2: 편지지 카드 선택
+      document.querySelectorAll('.paper-choice-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          state.paperStyle = card.dataset.paper;
+          refreshPaperChoiceUI();
+        });
+      });
+
+      // Screen 2 이동 버튼
+      document.getElementById('back-to-1-btn').addEventListener('click', () => navigateToScreen('screen-1'));
+      document.getElementById('go-to-3-btn').addEventListener('click', () => {
+        if (!state.openDateISO) {
+          showToast('편지를 열어볼 날짜를 먼저 선택해 주세요.');
+          return;
+        }
+        prepareWritingScreen();
+        navigateToScreen('screen-3');
+      });
+
+      // Screen 3: 빠른 편지지 전환 & 글씨체 전환
+      document.querySelectorAll('.quick-paper-dot').forEach((dot) => {
+        dot.addEventListener('click', () => {
+          applyStationeryThemeToSheet(dot.dataset.quickPaper);
+        });
+      });
+
+      document.getElementById('toggle-font-btn').addEventListener('click', (e) => {
+        const textarea = document.getElementById('letter-body-textarea');
+        const greeting = document.getElementById('sheet-greeting');
+        if (state.fontMode === 'serif') {
+          state.fontMode = 'hand';
+          textarea.classList.remove('font-serifKr', 'text-base', 'sm:text-lg');
+          textarea.classList.add('font-handKr', 'text-xl', 'sm:text-2xl');
+          greeting.classList.remove('font-serifKr');
+          greeting.classList.add('font-handKr', 'text-2xl', 'sm:text-3xl');
+          e.target.textContent = '다정한 손글씨체';
+        } else {
+          state.fontMode = 'serif';
+          textarea.classList.remove('font-handKr', 'text-xl', 'sm:text-2xl');
+          textarea.classList.add('font-serifKr', 'text-base', 'sm:text-lg');
+          greeting.classList.remove('font-handKr', 'text-2xl', 'sm:text-3xl');
+          greeting.classList.add('font-serifKr');
+          e.target.textContent = '단정한 명조체';
+        }
+      });
+
+      // 실시간 글자 수 카운트
+      const bodyTextarea = document.getElementById('letter-body-textarea');
+      bodyTextarea.addEventListener('input', () => {
+        state.draftBody = bodyTextarea.value;
+        updateCharCount();
+      });
+
+      document.getElementById('letter-title-input').addEventListener('input', (e) => {
+        state.draftTitle = e.target.value;
+      });
+
+      // 글쓰기 도움 질문 카드 클릭 시 편지지에 질문 삽입
+      document.querySelectorAll('.prompt-chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const question = chip.textContent.trim();
+          const current = bodyTextarea.value;
+          const prefix = current.length > 0 && !current.endsWith('\n') ? '\n\n' : (current.endsWith('\n') ? '\n' : '');
+          bodyTextarea.value = `${current}${prefix}Q. ${question}\n`;
+          state.draftBody = bodyTextarea.value;
+          updateCharCount();
+          bodyTextarea.focus();
+          showToast('질문이 편지지에 담겼어요 ✒️');
+        });
+      });
+
+      // Screen 3 -> Screen 2 / Screen 4
+      document.getElementById('back-to-2-btn').addEventListener('click', () => navigateToScreen('screen-2'));
+      document.getElementById('complete-letter-btn').addEventListener('click', () => {
+        const text = bodyTextarea.value.trim();
+        if (!text) {
+          showToast('미래의 나에게 전할 이야기를 한 줄 이상 적어주세요.');
+          bodyTextarea.focus();
+          return;
+        }
+        state.draftBody = text;
+        state.draftTitle = document.getElementById('letter-title-input').value.trim();
+        resetSealingStage();
+        navigateToScreen('screen-4');
+      });
+
+      // Screen 4: 타임캡슐 봉인 애니메이션 실행 & Screen 5 이동
+      document.getElementById('trigger-seal-btn').addEventListener('click', executeTimeCapsuleSealing);
+      document.getElementById('go-to-5-btn').addEventListener('click', () => {
+        renderCompletionScreen();
+        navigateToScreen('screen-5');
+      });
+
+      // Screen 5: 보관 완료증 버튼
+      document.getElementById('cert-view-capsule-btn').addEventListener('click', () => {
+        renderArchiveList();
+        navigateToScreen('screen-archive');
+      });
+      document.getElementById('cert-go-home-btn').addEventListener('click', () => {
+        navigateToScreen('screen-1');
+      });
+
+      // 보관함 화면 버튼
+      document.getElementById('archive-new-letter-btn').addEventListener('click', () => {
+        document.getElementById('start-write-btn').click();
+      });
+      document.getElementById('empty-start-btn').addEventListener('click', () => {
+        document.getElementById('start-write-btn').click();
+      });
+
+      // 상세 열람 및 수정 모달 이벤트
+      document.getElementById('close-detail-modal-btn').addEventListener('click', closeLetterDetailModal);
+      document.getElementById('modal-close-bottom-btn').addEventListener('click', closeLetterDetailModal);
+
+      document.getElementById('modal-enable-edit-btn').addEventListener('click', () => {
+        document.getElementById('modal-read-view').classList.add('hidden');
+        document.getElementById('modal-edit-view').classList.remove('hidden');
+      });
+
+      document.getElementById('modal-cancel-edit-btn').addEventListener('click', () => {
+        document.getElementById('modal-edit-view').classList.add('hidden');
+        document.getElementById('modal-read-view').classList.remove('hidden');
+      });
+
+      document.getElementById('modal-save-edit-btn').addEventListener('click', async () => {
+        const id = state.activeModalLetterId;
+        if (!id) return;
+
+        const newTitle = document.getElementById('edit-title-input').value.trim() || '미래의 나에게 보내는 편지';
+        const newOpenDate = document.getElementById('edit-open-date-input').value;
+        const newPaper = document.getElementById('edit-paper-select').value;
+        const newBody = document.getElementById('edit-body-textarea').value.trim();
+
+        if (!newBody) {
+          showToast('편지 본문을 비워둘 수 없어요.');
+          return;
+        }
+        if (!newOpenDate) {
+          showToast('개봉 예정일을 선택해 주세요.');
+          return;
+        }
+
+        await updateLetterInStore(id, {
+          title: newTitle,
+          openDate: newOpenDate,
+          paperStyle: newPaper,
+          body: newBody
+        });
+
+        showToast('편지가 안전하게 수정되었어요.');
+        closeLetterDetailModal();
+      });
+
+      // 삭제 확인 모달 연동
+      document.getElementById('modal-delete-btn').addEventListener('click', () => {
+        document.getElementById('delete-confirm-modal').classList.remove('hidden');
+      });
+      document.getElementById('cancel-delete-btn').addEventListener('click', () => {
+        document.getElementById('delete-confirm-modal').classList.add('hidden');
+      });
+      document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+        const id = state.activeModalLetterId;
+        document.getElementById('delete-confirm-modal').classList.add('hidden');
+        if (id) {
+          await deleteLetterFromStore(id);
+          closeLetterDetailModal();
+          showToast('편지가 타임캡슐에서 비워졌어요.');
+        }
+      });
+
+      // 로그인 / 계정 모달 제어
+      document.getElementById('nav-auth-btn').addEventListener('click', () => {
+        document.getElementById('auth-modal').classList.remove('hidden');
+      });
+      document.getElementById('close-auth-modal-btn').addEventListener('click', () => {
+        document.getElementById('auth-modal').classList.add('hidden');
+      });
+
+      document.getElementById('google-signin-btn').addEventListener('click', async () => {
+        if (!auth) {
+          showToast('현재 환경에서는 게스트 보관 모드로 동작합니다.');
+          return;
+        }
+        try {
+          const provider = new GoogleAuthProvider();
+          await signInWithPopup(auth, provider);
+          document.getElementById('auth-modal').classList.add('hidden');
+          showToast('Google 계정으로 연결되었습니다.');
+        } catch (err) {
+          showToast('Google 로그인을 완료하지 못했습니다. 게스트 모드로 계속 이용할 수 있어요.');
+        }
+      });
+
+      document.getElementById('email-auth-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!auth) {
+          showToast('현재 환경에서는 게스트 보관 모드로 동작합니다.');
+          return;
+        }
+        const email = document.getElementById('auth-email-input').value.trim();
+        const pw = document.getElementById('auth-password-input').value;
+        const mode = e.submitter?.dataset?.authMode || 'signin';
+
+        try {
+          if (mode === 'signup') {
+            await createUserWithEmailAndPassword(auth, email, pw);
+            showToast('회원가입 및 로그인이 완료되었습니다.');
+          } else {
+            await signInWithEmailAndPassword(auth, email, pw);
+            showToast('공방 계정으로 로그인되었습니다.');
+          }
+          document.getElementById('auth-modal').classList.add('hidden');
+        } catch (err) {
+          showToast('이메일 또는 비밀번호를 다시 확인해 주세요.');
+        }
+      });
+
+      document.getElementById('signout-btn').addEventListener('click', async () => {
+        if (!auth) return;
+        try {
+          await signOut(auth);
+          await signInAnonymously(auth);
+          document.getElementById('auth-modal').classList.add('hidden');
+          showToast('로그아웃되어 게스트 모드로 전환되었습니다.');
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
